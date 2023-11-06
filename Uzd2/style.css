@@ -1,0 +1,32 @@
+    body {
+        background-image: url(../uzd2/bg/mb-bg.jpg);
+        background-clip: border-box;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: auto;
+        font-family: 'Archivo', sans-serif;
+        position: absolute;
+    }
+    p {
+        color: grey;
+        font-family: 'Archivo', sans-serif;
+    }
+    div {
+        color: grey;
+        box-sizing: border-box;
+        font-family: 'Archivo', sans-serif;
+    }
+    a:link {
+        color: grey;
+        text-decoration: none;
+    }
+    a:visited {
+        color: grey;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+    a:active {
+        text-decoration: none;
+    }
