@@ -11,7 +11,7 @@ span {
     text-decoration: underline;
     text-decoration-color: skyblue;
     text-decoration-thickness: 15px;
-    text-shadow: 5px 5px 5px yellowgreen;
+    text-shadow: 5px 5px 5px rgb(20, 25, 9);
 }
 
 div{
@@ -22,4 +22,10 @@ div{
     margin: 5px;
     width: 50%;
     box-sizing: border-box;
+}
+i {
+    color: brown;
+}
+.lentele {
+    background-image: 
 }
