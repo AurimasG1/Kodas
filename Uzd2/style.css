@@ -1,10 +1,18 @@
     h1 {
-        color: #9C9583;
+        color: white;
         text-align: center;
         font-size: 3vh;
+        text-shadow: -1px 1px 0 #000,
+            1px 1px 0 #000,
+            1px -1px 0 #000,
+            -1px -1px 0 #000;
     }
 
     body {
+        background-image: url("http://127.0.0.1:5500/uzd2/bg/big-bg.jpg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
         margin: 0;
         padding: 0;
         background-color: white;
@@ -52,6 +60,10 @@
         text-transform: uppercase;
         font-family: 'Prompt', sans-serif;
         position: relative;
+        text-shadow: -1px 1px 0 #000,
+            1px 1px 0 #000,
+            1px -1px 0 #000,
+            -1px -1px 0 #000;
 
     }
 
@@ -63,16 +75,29 @@
     }
 
     .staciakampis {
+        font-weight: bold;
+        color: white;
         background-color: #CADBC8;
         box-sizing: border-box;
         margin: auto;
-        width: 300px;
-        height: 100px;
+        width: 30vh;
+        height: 15vh;
         border: 2px dotted white;
         font-size: 1.4vh;
         line-height: 2vh;
         position: relative;
-        
+        text-shadow: -1px 1px 0 #000,
+            1px 1px 0 #000,
+            1px -1px 0 #000,
+            -1px -1px 0 #000;
+
+    }
+
+    div.staciakampis:hover {
+        font-size: 1.6vh;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 
     p.apskritimas-1:hover {
@@ -125,6 +150,58 @@
     }
 
     p.apskritimas-13:hover {
+        background-image: url("http://127.0.0.1:5500/uzd2/logos/lexus-logo.png");
+    }
+
+    div.staciakampis-1:hover {
+        background-image: url("http://127.0.0.1:5500/uzd2/logos/mb-logo.png");
+    }
+
+    div.staciakampis-2:hover {
+        background-image: url("http://127.0.0.1:5500/uzd2/logos/bmw-logo.png");
+    }
+
+    div.staciakampis-3:hover {
+        background-image: url("http://127.0.0.1:5500/uzd2/logos/audi-logo.png");
+    }
+
+    div.staciakampis-4:hover {
+        background-image: url("http://127.0.0.1:5500/uzd2/logos/volvo-logo.png");
+    }
+
+    div.staciakampis-5:hover {
+        background-image: url("http://127.0.0.1:5500/uzd2/logos/volkswagen-logo.png");
+    }
+
+    div.staciakampis-6:hover {
+        background-image: url("http://127.0.0.1:5500/uzd2/logos/skoda-logo.png");
+    }
+
+    div.staciakampis-7:hover {
+        background-image: url("http://127.0.0.1:5500/uzd2/logos/mazda-logo.png");
+    }
+
+    div.staciakampis-8:hover {
+        background-image: url("http://127.0.0.1:5500/uzd2/logos/toyota-logo.png");
+    }
+
+    div.staciakampis-9:hover {
+        background-image: url("http://127.0.0.1:5500/uzd2/logos/hyundai-logo.png");
+    }
+
+    div.staciakampis-10:hover {
+        background-image: url("http://127.0.0.1:5500/uzd2/logos/kia-logo.png");
+    }
+
+    div.staciakampis-11:hover {
+        background-image: url("http://127.0.0.1:5500/uzd2/logos/subaru-logo.png");
+    }
+
+    div.staciakampis-12:hover {
+        background-image: url("http://127.0.0.1:5500/uzd2/logos/honda-logo.png");
+    }
+
+    div.staciakampis-13:hover {
         background-image: url("http://127.0.0.1:5500/uzd2/logos/lexus-logo.png");
     }
 
