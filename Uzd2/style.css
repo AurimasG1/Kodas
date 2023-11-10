@@ -1,234 +1,481 @@
-    h1 {
-        color: white;
-        text-align: center;
-        font-size: 3vh;
-        text-shadow: -1px 1px 0 #000,
-            1px 1px 0 #000,
-            1px -1px 0 #000,
-            -1px -1px 0 #000;
-    }
+h1 {
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-size: 3vh;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
 
-    body {
-        background-image: url("http://127.0.0.1:5500/uzd2/bg/big-bg.jpg");
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        margin: 0;
-        padding: 0;
-        background-color: white;
-        height: 100vh;
-        width: 100vw;
-        /* overflow-x: hidden; */
-    }
+body {
+    background-image: url("http://127.0.0.1:5500/uzd2/bg/big-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
 
-    .container1 {
-        display: flex;
-        height: auto;
-        width: auto;
-        flex-flow: row wrap;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        flex-grow: 5;
-    }
+.container1 {
+    display: flex;
+    height: auto;
+    width: auto;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
 
-    .container2 {
-        display: flex;
-        position: relative;
-        flex-flow: row wrap;
-        /* justify-content: center; */
-        /* align-items: center; */
-        /* align-content: stretch; */
-        gap: 1vh 1vw;
-        height: auto;
-        width: auto;
+.container2 {
+    display: flex;
+    position: relative;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh 1vw;
+    height: auto;
+    width: auto;
 
-    }
+}
 
-    .apskritimas {
-        background-color: #9C9583;
-        border-color: #4D4847;
-        width: 10vh;
-        height: 10vh;
-        border-radius: 50%;
-        border: 0.4vh solid black;
-        margin: 10px;
-        text-align: center;
-        font-size: 1.4vh;
-        line-height: 10vh;
-        font-family: monospace;
-        text-transform: uppercase;
-        font-family: 'Prompt', sans-serif;
-        position: relative;
-        text-shadow: -1px 1px 0 #000,
-            1px 1px 0 #000,
-            1px -1px 0 #000,
-            -1px -1px 0 #000;
+.apskritimas {
+    background-color: #9C9583;
+    border-color: #4D4847;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    border: 0.4vh solid black;
+    margin: 1vh;
+    text-align: center;
+    font-size: 1.4vh;
+    line-height: 10vh;
+    font-family: monospace;
+    text-transform: uppercase;
+    font-family: 'Prompt', sans-serif;
+    position: relative;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
 
-    }
+}
 
-    p.apskritimas:hover {
-        border-color: white;
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
+p.apskritimas:hover {
+    border-color: white;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
-    .staciakampis {
-        font-weight: bold;
-        color: white;
-        background-color: #CADBC8;
-        box-sizing: border-box;
-        margin: auto;
-        width: 30vh;
-        height: 15vh;
-        border: 2px dotted white;
-        font-size: 1.4vh;
-        line-height: 2vh;
-        position: relative;
-        text-shadow: -1px 1px 0 #000,
-            1px 1px 0 #000,
-            1px -1px 0 #000,
-            -1px -1px 0 #000;
+.staciakampis {
+    font-weight: bold;
+    color: white;
+    background-color: #CADBC8;
+    box-sizing: border-box;
+    margin: auto;
+    width: 30vh;
+    height: 15vh;
+    border: 2px dotted white;
+    font-size: 1.4vh;
+    line-height: 2vh;
+    position: relative;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
 
-    }
+}
 
-    div.staciakampis:hover {
-        font-size: 1.6vh;
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
+div.staciakampis:hover {
+    font-size: 1.6vh;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
-    p.apskritimas-1:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/mb-logo.png");
-    }
+p.apskritimas-1:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/mb-logo.png");
+}
 
-    p.apskritimas-2:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/bmw-logo.png");
-    }
+p.apskritimas-2:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/bmw-logo.png");
+}
 
-    p.apskritimas-3:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/audi-logo.png");
-    }
+p.apskritimas-3:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/audi-logo.png");
+}
 
-    p.apskritimas-4:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/volvo-logo.png");
-        background-size: cover;
-    }
+p.apskritimas-4:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/volvo-logo.png");
+    background-size: cover;
+}
 
-    p.apskritimas-5:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/volkswagen-logo.png");
-    }
+p.apskritimas-5:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/volkswagen-logo.png");
+}
 
-    p.apskritimas-6:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/skoda-logo.png");
-    }
+p.apskritimas-6:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/skoda-logo.png");
+}
 
-    p.apskritimas-7:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/mazda-logo.png");
-    }
+p.apskritimas-7:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/mazda-logo.png");
+}
 
-    p.apskritimas-8:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/toyota-logo.png");
-    }
+p.apskritimas-8:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/toyota-logo.png");
+}
 
-    p.apskritimas-9:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/hyundai-logo.png");
-    }
+p.apskritimas-9:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/hyundai-logo.png");
+}
 
-    p.apskritimas-10:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/kia-logo.png");
-    }
+p.apskritimas-10:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/kia-logo.png");
+}
 
-    p.apskritimas-11:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/subaru-logo.png");
-    }
+p.apskritimas-11:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/subaru-logo.png");
+}
 
-    p.apskritimas-12:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/honda-logo.png");
-    }
+p.apskritimas-12:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/honda-logo.png");
+}
 
-    p.apskritimas-13:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/lexus-logo.png");
-    }
+p.apskritimas-13:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/lexus-logo.png");
+}
 
-    div.staciakampis-1:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/mb-logo.png");
-    }
+div.staciakampis-1:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/mb-logo.png");
+}
 
-    div.staciakampis-2:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/bmw-logo.png");
-    }
+div.staciakampis-2:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/bmw-logo.png");
+}
 
-    div.staciakampis-3:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/audi-logo.png");
-    }
+div.staciakampis-3:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/audi-logo.png");
+}
 
-    div.staciakampis-4:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/volvo-logo.png");
-    }
+div.staciakampis-4:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/volvo-logo.png");
+}
 
-    div.staciakampis-5:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/volkswagen-logo.png");
-    }
+div.staciakampis-5:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/volkswagen-logo.png");
+}
 
-    div.staciakampis-6:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/skoda-logo.png");
-    }
+div.staciakampis-6:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/skoda-logo.png");
+}
 
-    div.staciakampis-7:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/mazda-logo.png");
-    }
+div.staciakampis-7:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/mazda-logo.png");
+}
 
-    div.staciakampis-8:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/toyota-logo.png");
-    }
+div.staciakampis-8:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/toyota-logo.png");
+}
 
-    div.staciakampis-9:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/hyundai-logo.png");
-    }
+div.staciakampis-9:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/hyundai-logo.png");
+}
 
-    div.staciakampis-10:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/kia-logo.png");
-    }
+div.staciakampis-10:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/kia-logo.png");
+}
 
-    div.staciakampis-11:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/subaru-logo.png");
-    }
+div.staciakampis-11:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/subaru-logo.png");
+}
 
-    div.staciakampis-12:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/honda-logo.png");
-    }
+div.staciakampis-12:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/honda-logo.png");
+}
 
-    div.staciakampis-13:hover {
-        background-image: url("http://127.0.0.1:5500/uzd2/logos/lexus-logo.png");
-    }
+div.staciakampis-13:hover {
+    background-image: url("http://127.0.0.1:5500/uzd2/logos/lexus-logo.png");
+}
 
-    .black {
-        color: black;
-    }
+a:link,
+a:visited {
+    color: white;
+    text-decoration: none;
+}
 
-    .white {
-        color: white;
-    }
+a.ex1:hover,
+a.ex1:active {
+    color: lightgray;
+    text-decoration: none;
+}
 
-    a:link,
-    a:visited {
-        color: lightgrey;
-        text-decoration: none;
-    }
+h4 {
+    text-align: center;
+    width: 100%;
+}
 
-    a.ex1:hover,
-    a.ex1:active {
-        color: white;
-        text-decoration: none;
-    }
+.mygtukas {
+    background-color: #ffffff40;
+    border: 2px solid green;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    filter: sepia(10%);
+}
 
-    h4 {
-        text-align: center;
-    }
+a.mygtukas:link,
+a.mygtukas:visited {
+    border: 2px solid #d3d3d340;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
 
-    /* div.pirma:hover {
-        font-size: 150%;
-    } */
+a.mygtukas:hover,
+a.mygtukas:active {
+    color: lightgray;
+}
+
+.logo {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: auto;
+    height: auto;
+}
+
+.mb {
+    background-image: url("http://127.0.0.1:5500/uzd2/bg/mb-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
+
+.bmw {
+    background-image: url("http://127.0.0.1:5500/uzd2/bg/bmw-bg.jpeg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
+
+.audi {
+    background-image: url("http://127.0.0.1:5500/uzd2/bg/audi-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
+
+.volvo {
+    background-image: url("http://127.0.0.1:5500/uzd2/bg/volvo-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
+
+.volkswagen {
+    background-image: url("http://127.0.0.1:5500/uzd2/bg/volkswagen-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
+
+.skoda {
+    background-image: url("http://127.0.0.1:5500/uzd2/bg/skoda-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
+
+.mazda {
+    background-image: url("http://127.0.0.1:5500/uzd2/bg/mazda-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
+
+.toyota {
+    background-image: url("http://127.0.0.1:5500/uzd2/bg/toyota-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
+
+.hyundai {
+    background-image: url("http://127.0.0.1:5500/uzd2/bg/hyundai-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
+
+.kia {
+    background-image: url("http://127.0.0.1:5500/uzd2/bg/kia-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
+
+.subaru {
+    background-image: url("http://127.0.0.1:5500/uzd2/bg/subaru-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
+
+.honda {
+    background-image: url("http://127.0.0.1:5500/uzd2/bg/honda-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
+
+.lexus {
+    background-image: url("http://127.0.0.1:5500/uzd2/bg/lexus-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
+}
