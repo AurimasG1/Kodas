@@ -489,7 +489,7 @@ a.mygtukas:active {
 }
 
 .virsuskaire {
-    min-width: auto;
+    width: auto;
     font-size: 1rem;
     line-height: 1.5rem;
     position: relative;
@@ -512,10 +512,10 @@ a.mygtukas:active {
 }
 
 .apaciadesine {
-    font-size: .75rem;
+    font-size: 0.75rem;
     font-style: normal;
     font-weight: 400;
-    letter-spacing: .01875em;
+    letter-spacing: 0.01875em;
     line-height: 1rem;
     position: relative;
 }
