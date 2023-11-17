@@ -95,25 +95,26 @@
 
 // console.log('Zvakes be nuolaidos kainuos', zvakiuskaicius);
 
-// if (zvakiuskaicius >= 1000) {
-//     console.log('Zvakes su 3% nuolaida kainuos', (zvakeskaina-(zvakeskaina/100*3)));
+// if (zvakiuskaicius > 1000) {
+//     console.log('Zvakes su 3% nuolaida kainuos', zvakeskaina * 0.97);
 // }
-// else (zvakiuskaicius >= 2000); {
+// else {(zvakiuskaicius >= 2000); {
 //     console.log('Zvakes su 4% nuolaida kainuos', (zvakeskaina-(zvakeskaina/100*4)));
 // }
 
-// let zvakiuskaicius = 2000;
+// let zvakiuskaicius = rand(5, 3000);
 // let zvakeskaina = zvakiuskaicius
 
 // console.log('Zvakes be nuolaidos kainuos', zvakiuskaicius);
 
-// if (zvakiuskaicius >= 2000) {
+// if (zvakiuskaicius > 2000) {
 //     console.log('Zvakes su 4% nuolaida kainuos ', zvakeskaina * 0.96);
 // } else {
-// if (zvakiuskaicius < 2000 && zvakiuskaicius >= 1000 ) {
+// if (zvakiuskaicius < 2000 && zvakiuskaicius > 1000 ) {
 //     console.log('Zvakes su 3% nuolaida kainuos ', zvakeskaina * 0.97)}
 //      else {console.log('Be nuolaidos ', zvakiuskaicius)
 // }}
+
 
 
 function rand(min, max) {
