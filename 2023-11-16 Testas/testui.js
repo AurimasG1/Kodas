@@ -14,11 +14,12 @@ console.log('pilkis sveria ', pilkis, 'murklys sveria', murklys)
 
 if (pilkis > murklys) {
     console.log('murklys yra lengvesnis katinukas');
-}else if (murklys > pilkis) {
+} else if (murklys > pilkis) {
     console.log('pilkis yra lengvesnis katinukas');
-}else if (pilkis === murklys) {
-    console.log('katinukų svoriai vienodi');
+} else {
+    console.log('katinukų svoriai vienodi')
 }
+
 
 let valtis1 = 15;
 let valtis2 = 15;

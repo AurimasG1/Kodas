@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.aplankas {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-gap: 10px;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.galerija {
+    overflow: scroll;
+    scroll-snap-type: x mandatory;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.gallery__img {
+    scroll-snap-align: start;
+    margin-bottom: 10px;
+    min-height: 100vh;
+    object-fit: cover;
+}
+
+.mazoji-nav {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin: 5px 5px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.mazoji-nav a {
+    height: 30vh;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.mazoji-nav__img {
+    object-fit: cover;
+    filter: saturate(0);
+    transition: 0.3s ease all;
+}
+
+.mazoji-nav__img:hover {
+    transform: scale(1.05);
+    filter: saturate(1);
+}
+
+@media screen and (max-width: 1200px) {
+    .aplankas {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+    }
+    .galerija {
+        flex-flow: row nowrap;
+    }
+    .mazoji-nav {
+        flex-flow: column nowrap;
+    }
+}
