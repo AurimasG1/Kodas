@@ -10,7 +10,7 @@ console.log('Hello');
 //     coin = rand(0, 1) ? 'Headas' : 'Tails';
 //     console.log(`My coin is: ${coin} Nice!`);
 // } while(coin != 'Headas');
-// kai zinome kiek ciklu
+// kai nezinome kiek ciklu
 
 // do {
 //     var skaicius = rand(1, 20);
