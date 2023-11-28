@@ -19,6 +19,27 @@ label {
     display: none;
 }
 
+section {
+    display: block;
+}
+
+.quick-example {
+    margin: 1rem;
+    padding: 1rem;
+    background: hsl(200 50% 50%);
+    border-radius: 0.5rem;
+    display: grid;
+    grid-template-rows: 0fr;
+}
+
+section section div.quick-example div {
+    overflow: hidden;
+}
+
+.quick-example:hover {
+    grid-template-rows: 1fr;
+}
+
 .block {
     border: 1px solid gray;
     width: 500px;
@@ -49,6 +70,90 @@ label {
     transition: max-height 0.4s cubic-bezier(0.47, 0, 0.745, 0.715);
 }
 
+.accordion {
+	width: 100%;
+}
+
+.accordion input {
+	display: none;
+}
+
+.box {
+	position: relative;
+	background: white;
+}
+
+.box::before {
+    content: '';
+    position: absolute;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+}
+
+header.box {
+	background: #00BCD4;
+	z-index: 100;
+	cursor: initial;
+	box-shadow: 0 -1px 0 #e5e5e5,0 0 2px -2px rgba(0,0,0,.12),0 2px 4px -4px rgba(0,0,0,.24);
+}
+
+header .box-title {
+	margin: 0;
+	font-weight: normal;
+	font-size: 16px;
+	color: white;
+	cursor: initial;
+}
+
+.box-title {
+	width: 100%;
+	height: 56px;
+	line-height: 64px;
+	padding: 0 20px;
+	display: inline-block;
+	cursor: pointer;
+  display: flex;
+}
+
+.box-content {
+	width: 640px;
+	font-size: 16px;
+	color: rgba(0,0,0,.54);
+	display: none;
+  max-height: 0;
+  transition: all 0.7 ease-in-out;
+}
+
+.box-close {
+	position: absolute;
+	height: 56px;
+	width: 100%;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+	display: none;
+}
+
+input[type="radio"]:checked + .box {
+	margin: 16px 0;
+  box-shadow: none;
+}
+
+input[type="radio"]:checked + .box .box-title {
+	border-bottom: none;
+}
+
+input[type="radio"]:checked + .box .box-content,
+input[type="radio"]:checked + .box .box-close {
+	display: inline-block;
+}
+
+
 [type="radio"] + label + label {
     display: none;
 }
@@ -65,7 +170,7 @@ label {
     max-height: 30vh;
 }
 
-.img-container {
+/* .img-container {
     width: 600px;
     padding: 10px;
     border: 1px solid gray;
@@ -113,7 +218,7 @@ label {
         left: 700px;
     }
 
-}
+} */
 
 /* @keyframes go2 {
     0% {

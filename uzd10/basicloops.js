@@ -1,4 +1,4 @@
-// 1. //
+1. //
 // let kintpirmos1 = rand(5, 25);
 // let kintpirmos2 = rand(5, 25);
 // let kintpirmos3 = rand(5, 25);
@@ -180,24 +180,21 @@ let randomo = 0;
 
 // console.log(`didysis ciklas ${didysisciklas}, mazasis ciklas ${mazasisciklas}`)
 
-// 9. B.//
 
+// // 9. B.//
 
 do {
     randomas = rand(5, 10);
     console.log('Išsirandomino ', randomas);
     if (randomas > 5 && randomo != 3) {
-    if (randomas != 5) {
-    if (randomas > 5) {
+        if (randomas != 5) {
+            if (randomas > 5) {
         didysisciklas++
-                // console.log('Pirmas patikrinimas', didysisciklas, mazasisciklas);
     } 
-    for (let i = 0; i < randomas; i++) {
+            for (let i = 0; i < randomas; i++) {
         mazasisciklas++;
         console.log(i);
     }
-
-                // console.log('Turetu buti atsakymas', didysisciklas, mazasisciklas);
     }
     
     console.log('Randomo ', randomo)
@@ -206,14 +203,11 @@ do {
         if (randomas != 5) {
             if (randomas > 5) {
                 didysisciklas++
-                // console.log('Pirmas patikrinimas', didysisciklas, mazasisciklas);
             } 
             for (let i = 0; i < randomas; i++) {
                 mazasisciklas++;
                 console.log(i);
             }
-        
-                // console.log('Turetu buti atsakymas', didysisciklas, mazasisciklas);
             }
             
             randomo++
@@ -268,7 +262,7 @@ console.log(`didysis ciklas ${didysisciklas}, mazasis ciklas ${mazasisciklas}`)
 
 
 
-// 10. //
+10. //
 
 // let Kazys;
 // let Petras;
