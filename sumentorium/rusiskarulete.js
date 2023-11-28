@@ -29,5 +29,6 @@ function funkcijaVienas(stringas) {
     console.log(stringas2);
 }
 
-funkcijaVienas('tarakonas');
+funkcijaVienas('tarakonas kiek man dar reikia kodo');
+
 
