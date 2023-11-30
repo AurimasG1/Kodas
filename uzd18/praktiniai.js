@@ -151,16 +151,82 @@
 // console.log(arr44)
 
 
-const colors = ['pink', 'green', 'blue', 'yellow', 'pink', 'black', 'pink'];
+// const colors = ['pink', 'green', 'blue', 'yellow', 'pink', 'black', 'pink'];
 
-const pinkai = colors.map(item => {
-    if (item === 'pink') {
-        return 'black';
-    }
-    return item;
-})
-console.log(pinkai, colors);
+// const pinkai = colors.map(item => {
+//     if (item === 'pink') {
+//         return 'black';
+//     }
+//     return item;
+// })
+// console.log(pinkai, colors);
 
-const noPinkIsBlack = colors.map(item => item === 'pink' ? 'black' : item);
+// const noPinkIsBlack = colors.map(item => item === 'pink' ? 'black' : item);
 
-console.log(noPinkIsBlack);
+// console.log(noPinkIsBlack);
+
+// const colors3 = [
+//     {color: 'pink', id: 1, sky: 'blue'},
+//     {color: 'green', id: 2, sky: 'blue'},
+//     {color: 'blue', id: 3, tractor: 'green'},
+//     {color: 'yellow', id: 4, sky: 'blue'},
+//     {color: 'pink', id: 5, forest: 'green'},
+//     {color: 'black', id: 6, sky: 'blue'},
+//     {color: 'pink', id: 7, sky: 'blue'}
+// ];
+
+// // const noPinkIsBlack3 = colors3.map(item => item.color == 'pink' ? {...item, color:'black'} : {...item});
+
+// colors3[0].color = 'red';
+// colors3[1].color = 'lele';
+
+
+// console.log(colors3)
+
+
+// // const noPinkIsBlack3 = colors3.map(item => item.color ? {...item, color:'black'} : {...item});
+
+// // console.log(noPinkIsBlack3)
+
+// const allBlack = colors3.map(item => ({...item, color: 'black'}));
+
+// console.log(allBlack);
+
+// const colors4 = [
+//     ['pink', 'green', 'blue'],
+//     ['yellow', 'pink', 'black', ['green', 'green', 'green'],['green', 'green', 'green'],['green', 'green', 'green']],
+
+//     ['pink', 'green', 'blue'],
+//     ['yellow', 'pink', 'black'],
+//     ['pink', 'green', 'blue'],
+//     ['yellow', 'pink', 'black'],
+//     ['pink', 'green', 'blue'],
+//     ['yellow', 'pink', 'black'],
+//     ['pink', 'green', 'blue'],
+//     ['yellow', 'pink', 'black'],
+//     ['pink', 'green', 'blue'],
+//     ['yellow', 'pink', 'black']
+// ];
+
+// // const secondElementBlack = colors4.map((item, index) => {
+// //     item[1] = 'black'
+// //     return item;
+// // })
+
+// const naujosSpalvos = colors4.map((item, index) => {
+//     if (index === 1) {
+//         return item.map(innerItem => {
+//             if (Array.isArray(innerItem)) {
+//                 return innerItem.map(() => 'black');
+//             } else {
+//                 return 'black';
+//             }
+//         });
+//     }
+//     return item;
+// });
+
+// console.log(naujosSpalvos);
+
+// // console.log(secondElementBlack)
+

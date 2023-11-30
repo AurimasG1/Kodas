@@ -6,16 +6,17 @@ function rand(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// function pirmosuzduotiesfunkcija(parametras, kiekkartu) {
-//     for (i = 1; i <= kiekkartu; i++)
-//     console.log(parametras)
-// }
+const pirmosuzduotiesfunkcija = function (parametras, kiekkartu) {
+    for (i = 1; i <= kiekkartu; i++)
+    console.log(parametras)
+}
 
-// pirmosuzduotiesfunkcija('tekstas argumentas', 10);
+pirmosuzduotiesfunkcija('tekstas argumentas', 10);
 
 
 
 function ketv(parametras) {
+    if (parametras > 1000000000) return 'per daug'
     let rezultatas = 0;
     for (i = 2; i <= parametras / 2; i++) {
         if (parametras % i === 0) {
@@ -24,8 +25,8 @@ function ketv(parametras) {
     }
     // console.log(rezultatas);
     return rezultatas;
-    
 }
+console.log(ketv(10000000000));
 
 
 let penktas = [];
@@ -122,15 +123,10 @@ masyvorandomas = rand(10, 20)
 
     console.log(pirmasmasyvas);
 
-console.log('masyvo randomas: ', masyvorandomas);
+// console.log('masyvo randomas: ', masyvorandomas);
 
-console.log('elem randomas: ', paskelemmasrand);
+// console.log('elem randomas: ', paskelemmasrand);
 
-const kurimas = () => {
-    console.log(rand(10, 30), 'kas cia', pirmasmasyvas[rand(10, 30)])
-}
-
-kurimas();
 
 // console.log('ciklo kartu randomas: ', randomas);
 
