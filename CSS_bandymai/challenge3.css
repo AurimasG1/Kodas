@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto';
+}
+
+.intro {   
+    background: #23424a;
+    color: white;
+    padding: 3rem 0;
+}
+
+.container {
+    max-width: 1440px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.intro-content {
+    width: 50%;
+  }
+
+.cta__btn {
+    display: inline-block;
+    color: #072A2D;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin: 2em auto;
+    padding: 0.7em 2em;
+    background: #38CFD9;
+    transition: background 250ms;
+    font-size: 1rem;
+    border-radius: 2em;
+    font-weight: 500;
+}
