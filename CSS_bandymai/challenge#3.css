@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.intro {   
+    background: #23424a;
+    color: white;
+    padding: 3rem 0;
+}
+
+.container {
+    max-width: 700px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.intro-content {
+    width: 50%;
+  }
