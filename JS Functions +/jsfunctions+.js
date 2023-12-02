@@ -153,3 +153,137 @@ masyvorandomas = rand(10, 20)
 
 //     }
 // }
+
+
+//
+// let miestai =  ['Vilnius', 'Kaunas', 'Klaipėda', 'Mažeikiai', 'Rusnė']
+//
+// console.log([miestai])
+// console.log(miestai[1])
+// //
+// let skrydis =  [['Londonas',140], ['Berlynas',170], ['Viena',200], ['Tbilisis',90], ['Lisabona', 130 ,['ryanair', 'wizzair']]]
+// //
+// console.log(skrydis)
+// console.log(skrydis[2])
+// skrydis[4][2][0] = 'lufthansa'
+//
+// console.log(skrydis[4][2][0])
+//
+// let tbilisis = skrydis[3]
+// console.log(tbilisis[1])
+//
+// console.log(skrydis)
+// //
+// //
+// console.log(miestai.length)
+// console.log(skrydis.length)
+// //
+//  console.log(miestai[miestai.length-1])
+// //
+// miestai.push('Šiauliai')
+// miestai.push('')
+// let uzsakymas
+//
+//     uzsakymas = (skrydis.pop())
+//
+// console.log(uzsakymas)
+// console.log(skrydis)
+//
+// uzsakymas = (skrydis.pop())
+// console.log(uzsakymas)
+// console.log(skrydis)
+
+
+//
+
+// function dienosPavadinimas(n) {
+//
+//     let dienos = ['Pirmadienis', 'Antradienis', 'Trečiadienis', 'Ketvirtadienis', 'Penktadienis', 'Šeštadienis', 'Sekmadienis']
+//
+//     return dienos[n]
+//
+// }
+//
+// console.log(dienosPavadinimas(4))
+//
+function visosDienos() {
+
+   let dienos = ['Pirmadienis', 'Antradienis', 'Trečiadienis', 'Ketvirtadienis', 'Penktadienis', 'Šeštadienis', 'Sekmadienis']
+
+    return dienos
+}
+
+console.log(visosDienos())
+
+
+// function randomMasyvas(dydis, nuo, iki) {
+
+//     masyvas = []
+
+//     for (let x = 0; x < dydis; x++) {
+
+//         masyvas.push(rand(nuo, iki))
+//     }
+
+//     return masyvas
+
+// }
+// let mas1
+
+//  mas1 = randomMasyvas(rand(10,20), 0, 10)
+// console.log(mas1)
+
+//sukuriame atsitiktinio ilgio masyva su atsitiktiniais elementais
+
+// let pirmasZingsnis = randomMasyvas(rand(10,20),0,10)
+// console.log(pirmasZingsnis)
+//
+//
+// console.log(pirmasZingsnis.length)
+// console.log(pirmasZingsnis[pirmasZingsnis.length-1])
+//
+//
+//
+//
+// pirmasZingsnis[pirmasZingsnis.length-1] = '999'
+// console.log(pirmasZingsnis)
+// //
+// pirmasZingsnis[pirmasZingsnis.length-1] = randomMasyvas(rand(10,20),0,10)
+// //
+// console.log(pirmasZingsnis)
+
+// sukuriame masyva is masyvu
+
+// let didelis = []
+
+// for (let x= 0; x < rand(10,30);x++) {
+
+//     let masyvasIkelimui = randomMasyvas(rand(10,20),0,10)
+
+//     masyvasIkelimui[masyvasIkelimui.length-1] = randomMasyvas(rand(10,20),0,10)
+
+//     didelis.push(masyvasIkelimui)
+
+// }
+
+// console.log(didelis)
+
+
+
+// //paskutinio paskutiniausio elemento radimas
+
+// let paskutineeilute = didelis.length-1
+// console.log(paskutineeilute)
+// //
+// let paskutinismasyvas = didelis[paskutineeilute].length-1
+// console.log(paskutinismasyvas)
+// //
+// let paskutiniselementas = didelis[paskutineeilute][paskutinismasyvas].length-1
+// //
+// console.log(paskutiniselementas)
+// //
+// // //priskiriame jam nuli
+// //
+// didelis[paskutineeilute][paskutinismasyvas][paskutiniselementas] = 0
+// //
+// console.log(didelis)
