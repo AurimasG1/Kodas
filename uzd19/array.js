@@ -1,4 +1,5 @@
-const small = [1, 0, 1, 0, 1, 0, 1];
+const small = [1, 0, 1, 1, 0, 1, 0, 1, 1, 0];
+const ones = small.filter(item => item == 1);
 
 const farm = [
   { name: "Moo", type: "cow" },

@@ -6,12 +6,12 @@ function rand(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const pirmosuzduotiesfunkcija = function (parametras, kiekkartu) {
-    for (i = 1; i <= kiekkartu; i++)
-    console.log(parametras)
-}
+// const pirmosuzduotiesfunkcija = function (parametras, kiekkartu) {
+//     for (i = 1; i <= kiekkartu; i++)
+//     console.log(parametras)
+// }
 
-pirmosuzduotiesfunkcija('tekstas argumentas', 10);
+// pirmosuzduotiesfunkcija('tekstas argumentas', 10);
 
 
 
@@ -23,19 +23,41 @@ function ketv(parametras) {
             rezultatas++
         }
     }
-    // console.log(rezultatas);
     return rezultatas;
 }
-console.log(ketv(10000000000));
+console.log(ketv(525));
 
 
-let penktas = [];
+const penktas = [];
 
 for (i = 0; i < 100; i++) {
-    // penktas[i] = rand(33, 77);
     penktas.push(rand(33, 77));
     
 }
+// console.log(penktas);
+
+penktas.sort((a, b) => {
+    if (ketv(a) < ketv(b)) {
+        return 1;
+    }
+    if (ketv(a) > ketv(b)) {
+        return -1;
+    }
+    return 0;
+});
+// console.log(penktas);
+
+const sestas = [];
+
+for (let i = 0; i < 100; i++) {
+    sestas.push(rand(333, 777));
+}
+
+// const sestasBePirminiu = sestas.filter(item => ketv(item) / ketv(item) === 0 && ketv(item) / 1 === ketv(item) && ketv(item) / 2 != 0);
+const sestasBePirminiu = sestas.filter(item => ketv(item) != 0);
+
+console.log(sestasBePirminiu);
+
 
 // console.log(penktas)
 
@@ -109,19 +131,19 @@ let pirmomasyvopaskutiniselementas = [];
 
 // pirmasmasyvas[pirmasmasyvas.length-1] = pirmomasyvopaskutiniselementas
 
-let randomas = rand(10, 30);
+// let randomas = rand(10, 30);
 
-masyvorandomas = rand(10, 20)
-       for (j = 0; j < masyvorandomas; j++) {
-        pirmasmasyvas.push(rand(0, 10));
-    }
-    paskelemmasrand = rand (10, 20)
-        for (k = 0; k < paskelemmasrand; k++) {
-        pirmomasyvopaskutiniselementas.push(rand(0, 10));
-    }
-    pirmasmasyvas[pirmasmasyvas.length-1] = pirmomasyvopaskutiniselementas
+// masyvorandomas = rand(10, 20)
+//        for (j = 0; j < masyvorandomas; j++) {
+//         pirmasmasyvas.push(rand(0, 10));
+//     }
+//     paskelemmasrand = rand (10, 20)
+//         for (k = 0; k < paskelemmasrand; k++) {
+//         pirmomasyvopaskutiniselementas.push(rand(0, 10));
+//     }
+//     pirmasmasyvas[pirmasmasyvas.length-1] = pirmomasyvopaskutiniselementas
 
-    console.log(pirmasmasyvas);
+//     console.log(pirmasmasyvas);
 
 // console.log('masyvo randomas: ', masyvorandomas);
 
@@ -206,14 +228,14 @@ masyvorandomas = rand(10, 20)
 //
 // console.log(dienosPavadinimas(4))
 //
-function visosDienos() {
+// function visosDienos() {
 
-   let dienos = ['Pirmadienis', 'Antradienis', 'Trečiadienis', 'Ketvirtadienis', 'Penktadienis', 'Šeštadienis', 'Sekmadienis']
+//    let dienos = ['Pirmadienis', 'Antradienis', 'Trečiadienis', 'Ketvirtadienis', 'Penktadienis', 'Šeštadienis', 'Sekmadienis']
 
-    return dienos
-}
+//     return dienos
+// }
 
-console.log(visosDienos())
+// console.log(visosDienos())
 
 
 // function randomMasyvas(dydis, nuo, iki) {

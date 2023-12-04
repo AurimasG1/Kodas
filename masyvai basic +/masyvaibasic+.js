@@ -7,9 +7,30 @@ function rand(min, max) {
 }
 const pirmasmasyvas = [];
 
-const masyvokurimas = function (ilgis, nuo, iki) {
-    for (let i = 0; i < rand(0, 29) ; i++) {
+for (let i = 0; i < 30 ; i++) {
     pirmasmasyvas.push(rand(5, 25));
 }
-}
+
 console.log(pirmasmasyvas);
+
+let kiekDaugUz10 = 0;
+// for (let i = 0; i < 30; i++) {
+//     if (pirmasmasyvas[i] > 10) {
+//         kiekDaugUz10++
+//     }
+// }
+
+const skaiciuotuvas = function (parametras) {
+    let kiekDaugUz10 = 0;
+
+    parametras.forEach(item => {
+        (item > 10) ? kiekDaugUz10++ : null
+    });
+
+    return kiekDaugUz10;
+}
+// pirmasmasyvas.forEach(item => {
+//     (item > 10) ? kiekDaugUz10++ : null
+// })
+
+console.log(skaiciuotuvas(pirmasmasyvas));
