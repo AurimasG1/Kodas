@@ -89,12 +89,21 @@ console.log(animals, animals.length);
 
 
 const superFarm = [
-    { animal:'Cow', weight: 500 },
+    { animal:'Agurkinis', weight: 500},
+    { animal: 'Cow', weight: 1000},
     { animal:'Chicken', weight: 3 },
+    { animal: 'Bebras', weight: 10},
     { animal:'Pig', weight: 100 },
     { animal:'Cow', weight: 400 },
+    { weight: 444},
+    { animal: 'Bebras', weight: 10},
     { animal:'Chicken', weight: 2 },
-    { animal:'Cow', weight: 600 }
+    { animal:'Cow', weight: 600 },
+    { animal: 'Agurkinis', weight: 1000},
+    { animal: 0, weight: 1},
+    { animal: '1', weight: 50},
+    { animal: 2, weight: 5},
+    { animal: 4, weight: 1}
 ];
 
 // let svoris = 0;
@@ -106,7 +115,7 @@ const superFarm = [
 
 const allAnimalWeight = {};
 
-superFarm.forEach(a => {
+superFarm.forEach((a, b) => {
     if (allAnimalWeight[a.animal] === undefined) {
         allAnimalWeight[a.animal] = 0;
     }
@@ -114,6 +123,7 @@ superFarm.forEach(a => {
 });
 
 console.log(allAnimalWeight);
+console.log(superFarm);
 
 const colors = [
     'red',
@@ -148,3 +158,4 @@ colors.forEach(color => color === 'pink' && (isPink = 'yra'));
 // });
 
 console.log(isPink);
+
