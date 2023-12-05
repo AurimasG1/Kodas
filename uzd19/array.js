@@ -129,3 +129,5 @@ animals.sort((a, b) => {
 });
 console.log(animals);
 
+
+
