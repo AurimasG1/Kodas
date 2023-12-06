@@ -8,9 +8,9 @@ function rand(min, max) {
 
 
 let sugeneruotasmasyvas = [];
-    for (let i = 0; i < 30 ; i++) {
-        sugeneruotasmasyvas.push(rand(5, 25));
-    }
+for (let i = 0; i < 30; i++) {
+    sugeneruotasmasyvas.push(rand(5, 25));
+}
 
 
 let kiekDaugUz10 = 0;
@@ -23,8 +23,8 @@ let kiekDaugUz10 = 0;
 let dauguz10 = 0;
 console.log(sugeneruotasmasyvas);
 sugeneruotasmasyvas.forEach(item => {
-        (item > 10) ? dauguz10++ : null
-    });
+    (item > 10) ? dauguz10++ : null
+});
 console.log(dauguz10);
 
 
@@ -32,9 +32,9 @@ const variantasA = sugeneruotasmasyvas.length / 2 * (sugeneruotasmasyvas.length 
 let variantasAA = 0;
 for (let i = 0; i < sugeneruotasmasyvas.length; i++) {
     if (i % 2 === 0) {
-       variantasAA += i
+        variantasAA += i
     }
-   }
+}
 console.log(variantasAA);
 console.log(variantasA);
 
@@ -42,9 +42,9 @@ console.log(variantasA);
 let variantasB = 0;
 
 for (let i = 2; i < sugeneruotasmasyvas.length; i++) {
- if (i % 2 === 0) {
-    variantasB += sugeneruotasmasyvas[i]
- }
+    if (i % 2 === 0) {
+        variantasB += sugeneruotasmasyvas[i]
+    }
 }
 console.log(variantasB);
 
@@ -52,7 +52,7 @@ console.log(variantasB);
 let naujasmas = [];
 
 for (let i = 0; i < sugeneruotasmasyvas.length; i++) {
-   naujasmas.push(sugeneruotasmasyvas[i] - i)
+    naujasmas.push(sugeneruotasmasyvas[i] - i)
 }
 console.log(naujasmas);
 
@@ -81,6 +81,24 @@ console.log(sugeneruotasmasyvas);
 
 // }
 
-let pirmasmaz = sugeneruotasmasyvas.find((elem, index) => elem > 10 ? index : null )
+// let pirmasmaz = sugeneruotasmasyvas.find((elem, index) => elem > 10 ? index : null )
 
-console.log(pirmasmaz);
+// console.log(pirmasmaz);
+
+const indexas = sugeneruotasmasyvas.findIndex(elem => elem > 10)
+
+console.log(indexas, sugeneruotasmasyvas[indexas]);
+
+// susikuri masyva x
+// C1KLas 100
+// kartut
+// sugeneruodi skaiciu y
+//     = 1991999)
+// irsad 1 masyva x
+// vel
+// sug8n8ru021 X
+// I
+// patikrini ac y nera masyve(findindex(y))
+// jeigu grazino
+//     - 1
+// reiskia nerado

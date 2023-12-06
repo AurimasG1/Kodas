@@ -82,13 +82,13 @@ const first5CatsOrDogs = farm.filter(
 console.log(first5CatsOrDogs);
 
 const animals = [
-  {name: 'Fancy', species: 'dog', age: 5},
-  {name: 'Poncho', species: 'dog', age: 10},
-  {name: 'Tom', species: 'cat', age: 3},
-  {name: 'Jerry', species: 'cat', age: 1},
-  {name: 'Bella', species: 'dog', age: 12},
-  {name: 'Charlie', species: 'dog', age: 8},
-  {name: 'Max', species: 'cat', age: 7}
+  { name: 'Fancy', species: 'dog', age: 5 },
+  { name: 'Poncho', species: 'dog', age: 10 },
+  { name: 'Tom', species: 'cat', age: 3 },
+  { name: 'Jerry', species: 'cat', age: 1 },
+  { name: 'Bella', species: 'dog', age: 12 },
+  { name: 'Charlie', species: 'dog', age: 8 },
+  { name: 'Max', species: 'cat', age: 7 }
 ];
 
 const ageOfAnimals = animals.reduce((sum, item) => sum + item.age, 0);
