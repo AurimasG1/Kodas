@@ -41,7 +41,7 @@ submit.addEventListener('click', _ => {
   input.value = '';
 });
 
-const buttons = document.querySelectorAll('.container button')
+const buttons = document.querySelectorAll('.container button');
 for (const button of buttons) {
   button.addEventListener('click', _ => {
     const text = button.innerText;
@@ -54,7 +54,7 @@ const google = document.querySelector('a');
 google.addEventListener('click', e => {
   e.preventDefault();
   setTimeout(_ => {
-    location.href = e.target.href
+    location.href = e.target.href;
   }, 2000);
   console.log('You clicked the link!');
 });
@@ -69,3 +69,4 @@ document.querySelector('.child')
     e.stopPropagation();
     console.log('Child is clicked');
   });
+
