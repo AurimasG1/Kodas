@@ -1,5 +1,5 @@
 const small = [1, 0, 1, 1, 0, 1, 0, 1, 1, 0];
-const ones = small.filter(item => item == 1);
+const ones = small.filter(item => item == 1); // ------ Filter supranta tik TRUE arba FALSE. Taigi, palieka arba nepalieka.
 
 const farm = [
   { name: "Moo", type: "cow" },
@@ -58,7 +58,7 @@ console.log(whiteDogs);
 
 const findCat = farm.find((item) => item.type == "cat");
 
-const findCatColor = farm.find((item) => item.type == "color")?.color;
+const findCatColor = farm.find((item) => item.type == 'cat')?.color;
 
 console.log(findCat);
 console.log(findCatColor);
@@ -69,7 +69,7 @@ console.log(dog?.name);
 
 let catCount = 0;
 
-const secondCat = farm.find((item) => item.type == "cat" && ++catCount == 2);
+const secondCat = farm.find(item => item.type == "cat" && ++catCount == 2);
 
 console.log(secondCat);
 
@@ -77,9 +77,9 @@ let catsDogCounter = 0;
 
 // const first5CatsOrDogs = farm.filter(item => (item.type == 'cat' || item.type == 'dog') && ++catsDogCounter <= 5);
 
-const first5CatsOrDogs = farm.filter(
-  item => (item.type == "cat" || item.type == "dog") && ++catsDogCounter <= 4);
-console.log(first5CatsOrDogs);
+const firstCatsorDogsCounter = farm.filter(
+  item => (item.type == "cat" || item.type == "dog") && ++catsDogCounter <= 8);
+console.log(firstCatsorDogsCounter);
 
 const animals = [
   { name: 'Fancy', species: 'dog', age: 5 },
@@ -91,8 +91,8 @@ const animals = [
   { name: 'Max', species: 'cat', age: 7 }
 ];
 
-const ageOfAnimals = animals.reduce((sum, item) => sum + item.age, 0);
-console.log(ageOfAnimals);
+const sumAgeOfAnimals = animals.reduce((sum, item) => sum + item.age, 0);
+console.log(sumAgeOfAnimals);
 
 const averageAgeOfAnimals = animals.reduce((sum, item, index, array) => {
   sum += item.age;
@@ -103,30 +103,29 @@ const averageAgeOfAnimals = animals.reduce((sum, item, index, array) => {
 
   return sum;
 }, 0);
-
 console.log(averageAgeOfAnimals);
 
 const maxAgeOfAnimals = animals.reduce((max, item) => max > item.age ? max : item.age, 0);
 
 console.log(maxAgeOfAnimals);
 
-// animals.sort((a, b) => a.age - b.age);
-// animals.sort((a, b) => b.name.localeCompare(a.name));
-animals.sort((a, b) => {
-  if (a.species < b.species) {
-    return -1;
-  }
-  if (a.species > b.species) {
-    return 1;
-  }
-  if (a.age < b.age) {
-    return -1;
-  }
-  if (a.age > b.age) {
-    return 1;
-  }
-  return 0;
-});
+// animals.sort((a, b) => a.age - b.age); // ------------- rusiuoti Skaicius
+// animals.sort((a, b) => a.name[1].localeCompare(b.name[1])); // -------------- rusiuoti Stringus
+// animals.sort((a, b) => {
+//   if (a.species < b.species) {
+//     return -1;
+//   }
+//   if (a.species > b.species) {
+//     return 1;55
+//   }
+//   if (a.age < b.age) {
+//     return -1;
+//   }
+//   if (a.age > b.age) {
+//     return 1;
+//   }
+//   return 0;
+// });
 console.log(animals);
 
 
