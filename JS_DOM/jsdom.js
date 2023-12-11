@@ -82,7 +82,8 @@ i.addEventListener('click', _ => {
 // 3 C ------------------------------------------------------------------------
 const pricesklases = document.querySelector('.prices');
 let skaiciuoklis = 0;
-pricesklases.addEventListener('click', _ => {
+pricesklases.addEventListener('click', e => {
+  e.stopPropagation();
   skaiciuoklis++;
   if (skaiciuoklis % 2 === 0 && skaiciuoklis !== 0) {
     pricesklases.style.backgroundColor = 'white';
@@ -245,3 +246,81 @@ patinka4.addEventListener('click', _ => {
 });
 
 // 5 A ------------------------------------------------------------------------
+const senjoruvieta = document.querySelector('.prices');
+const senjoruelementas = document.createElement('h2');
+const senjorutextnode = document.createTextNode('Senjorai tik: 1.99 eur');
+senjoruelementas.appendChild(senjorutextnode);
+senjoruvieta.appendChild(senjoruelementas);
+
+// 5 B
+const senjoruvieta2 = document.querySelector('.prices');
+const senjoruelementas2 = document.createElement('h2');
+const senjorutextnode2 = document.createTextNode('Senjorų grupė iki 10: tik 5.99 eur');
+senjoruelementas2.classList.add('new');
+senjoruelementas2.appendChild(senjorutextnode2);
+senjoruvieta2.appendChild(senjoruelementas2);
+senjoruelementas2.addEventListener('click', e => {
+  e.stopPropagation();
+  senjoruelementas2.style.color = 'green';
+});
+
+// 5 C
+const nepatinka1Vieta = document.querySelectorAll('#zirafos li')[0];
+const nepatinkaLiElementas1 = document.createElement('li');
+const nepatinkaLitextNode1 = document.createTextNode('NEPATINKA');
+nepatinkaLiElementas1.appendChild(nepatinkaLitextNode1);
+nepatinka1Vieta.insertAdjacentElement('afterend', nepatinkaLiElementas1);
+nepatinkaLiElementas1.addEventListener('click', _ => {
+  patinka1tevas.classList.remove('like')
+});
+
+const nepatinka2Vieta = document.querySelectorAll('#plesrunai li')[0];
+const nepatinkaLiElementas2 = document.createElement('li');
+const nepatinkaLitextNode2 = document.createTextNode('NEPATINKA');
+nepatinkaLiElementas2.appendChild(nepatinkaLitextNode2);
+nepatinka2Vieta.insertAdjacentElement('afterend', nepatinkaLiElementas2);
+nepatinkaLiElementas2.addEventListener('click', _ => {
+  patinka2tevas.classList.remove('like')
+});
+
+const nepatinka3Vieta = document.querySelectorAll('#gyvates li')[0];
+const nepatinkaLiElementas3 = document.createElement('li');
+const nepatinkaLitextNode3 = document.createTextNode('NEPATINKA');
+nepatinkaLiElementas3.appendChild(nepatinkaLitextNode3);
+nepatinka3Vieta.insertAdjacentElement('afterend', nepatinkaLiElementas3);
+nepatinkaLiElementas3.addEventListener('click', _ => {
+  patinka3tevas.classList.remove('like')
+});
+
+const nepatinka4Vieta = document.querySelectorAll('#zoliaedziai li')[0];
+const nepatinkaLiElementas4 = document.createElement('li');
+const nepatinkaLitextNode4 = document.createTextNode('NEPATINKA');
+nepatinkaLiElementas4.appendChild(nepatinkaLitextNode4);
+nepatinka4Vieta.insertAdjacentElement('afterend', nepatinkaLiElementas4);
+nepatinkaLiElementas4.addEventListener('click', _ => {
+  patinka4tevas.classList.remove('like')
+});
+
+// 5 D
+const header3mygtukuvieta = document.querySelectorAll('fieldset')[1];
+const header3MygtukuFieldsetElementas = document.createElement('fieldset');
+const header3mygtukuLegendElementas = document.createElement('legend');
+const header3mygtukuLegendElementoTekstas = document.createTextNode('HEADER 3');
+const header3mygtukas1 = document.createElement('button');
+const header3mygtukas2 = document.createElement('button');
+const header3mygtuko1Tekstas = document.createTextNode('Pabraukti H1 tagą');
+const header3mygtuko2Tekstas = document.createTextNode('Nepabraukti H1 tagą');
+header3mygtukas1.appendChild(header3mygtuko1Tekstas);
+header3mygtukas2.appendChild(header3mygtuko2Tekstas);
+header3MygtukuFieldsetElementas.appendChild(header3mygtukuLegendElementas);
+header3mygtukuvieta.insertAdjacentElement('afterend', header3MygtukuFieldsetElementas)
+header3mygtukuLegendElementas.appendChild(header3mygtukuLegendElementoTekstas);
+header3mygtukuLegendElementas.insertAdjacentElement('afterend', header3mygtukas2);
+header3mygtukuLegendElementas.insertAdjacentElement('afterend', header3mygtukas1);
+header3mygtukas1.addEventListener('click', _ => {
+  h1.style.textDecoration = 'underline';
+});
+header3mygtukas2.addEventListener('click', _ => {
+  h1.style.textDecoration = 'none';
+
+});
