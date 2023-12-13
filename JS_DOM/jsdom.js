@@ -313,7 +313,7 @@ const header3mygtuko2Tekstas = document.createTextNode('Nepabraukti H1 tagą');
 header3mygtukas1.appendChild(header3mygtuko1Tekstas);
 header3mygtukas2.appendChild(header3mygtuko2Tekstas);
 header3MygtukuFieldsetElementas.appendChild(header3mygtukuLegendElementas);
-header3mygtukuvieta.insertAdjacentElement('afterend', header3MygtukuFieldsetElementas)
+header3mygtukuvieta.insertAdjacentElement('afterend', header3MygtukuFieldsetElementas);
 header3mygtukuLegendElementas.appendChild(header3mygtukuLegendElementoTekstas);
 header3mygtukuLegendElementas.insertAdjacentElement('afterend', header3mygtukas2);
 header3mygtukuLegendElementas.insertAdjacentElement('afterend', header3mygtukas1);
@@ -322,5 +322,4 @@ header3mygtukas1.addEventListener('click', _ => {
 });
 header3mygtukas2.addEventListener('click', _ => {
   h1.style.textDecoration = 'none';
-
 });
