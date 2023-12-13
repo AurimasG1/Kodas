@@ -13,7 +13,7 @@ export default function Racoon({randomColor, svoris, name, color, children}) {
         <h2 style={{color}}>Racoon H2
             {name}
             {' '}
-            <div>{svoris * 2} kg</div>
+            <div style={{color: randomColor()}}>{svoris * 2} kg</div>
         </h2>
         {children}
         <i>

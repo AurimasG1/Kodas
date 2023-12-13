@@ -1,5 +1,7 @@
 export default function LabasZuiki ({color}) {
     return (
-        <p style={{color}}>LABAS, ZUIKI!</p>
+        <>
+        <h1 style={{color}}>LABAS, ZUIKI!</h1>
+        </>
     )
 }

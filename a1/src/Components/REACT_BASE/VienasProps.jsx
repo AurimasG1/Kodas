@@ -1,5 +1,7 @@
-export default function VienasProps({tekstas}) {
+export default function VienasProps({tekstas, randomColor}) {
     return (
-        <h1>{tekstas}</h1>
+        <>
+        <h1 style={{color: randomColor()}}>{tekstas}</h1>  
+        </>
     )
 }
