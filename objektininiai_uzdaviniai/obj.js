@@ -1,144 +1,149 @@
-// class Kibiras1 {
+// 1 ----------------------------------------------
 
-//     constructor() {
-//         this.akmenuKiekis = 0;
-//     }
+class Kibiras1 {
 
-//     prideti1Akmeni() {
-//         this.akmenuKiekis++;
-//     }
+    constructor() {
+        this.akmenuKiekis = 0;
+    }
 
-//     pridetiDaugAkmenu(kiekis) {
-//         this.akmenuKiekis += kiekis;
-//     }
+    prideti1Akmeni() {
+        this.akmenuKiekis++;
+    }
+
+    pridetiDaugAkmenu(kiekis) {
+        this.akmenuKiekis += kiekis;
+    }
     
-//     kiekPririnktaAkmenu() {
-//         console.log(this.akmenuKiekis);
-//     }
+    kiekPririnktaAkmenu() {
+        console.log(this.akmenuKiekis, ' akmenu');
+    }
 
-// }
+}
 
-// const kibiras = new Kibiras1();
+const kibiras = new Kibiras1();
 
-// kibiras.prideti1Akmeni();
-// kibiras.prideti1Akmeni();
-// kibiras.prideti1Akmeni();
-// kibiras.pridetiDaugAkmenu(10);
-// kibiras.kiekPririnktaAkmenu();
+kibiras.prideti1Akmeni();
+kibiras.prideti1Akmeni();
+kibiras.prideti1Akmeni();
+kibiras.pridetiDaugAkmenu(10);
+kibiras.kiekPririnktaAkmenu();
 
-// class Pinigine {
+// 2 --------------------------------------------------------------
 
-//     constructor() {
+class Pinigine {
 
-//         this.popieriniaiPinigai = 0;
-//         this.metaliniaiPinigai = 0;
+    constructor() {
 
-//     }
+        this.popieriniaiPinigai = 0;
+        this.metaliniaiPinigai = 0;
 
-//     ideti(kiekis) {
-//         if (kiekis < 2) {
-//             this.metaliniaiPinigai += kiekis;
-//         } else {
-//             this.popieriniaiPinigai += kiekis;
-//         }
-//     }
+    }
 
-//     skaiciuoti() {
-//         console.log(this.popieriniaiPinigai + this.metaliniaiPinigai);
-//     }
-// }
+    ideti(kiekis) {
+        if (kiekis < 2) {
+            this.metaliniaiPinigai += kiekis;
+        } else {
+            this.popieriniaiPinigai += kiekis;
+        }
+    }
 
-// const pinigai = new Pinigine();
+    skaiciuoti() {
+        console.log(this.popieriniaiPinigai + this.metaliniaiPinigai,  'pinigu');
+    }
+}
 
-// pinigai.ideti(15);
-// pinigai.ideti(1);
-// pinigai.ideti(2);
-// pinigai.ideti(3);
-// pinigai.skaiciuoti();
+const pinigai = new Pinigine();
 
-// class Troleibusas {
+pinigai.ideti(15);
+pinigai.ideti(1);
+pinigai.ideti(2);
+pinigai.ideti(3);
+pinigai.skaiciuoti();
 
-//     constructor() {
+class Troleibusas {
 
-//         this.keleiviuSkaicius = 0;
-//     }
+    constructor() {
 
-//     ilipa(keleiviuSkaicius) {
+        this.keleiviuSkaicius = 0;
+    }
 
-//         this.keleiviuSkaicius += keleiviuSkaicius
-//     }
+    ilipa(keleiviuSkaicius) {
+
+        this.keleiviuSkaicius += keleiviuSkaicius
+    }
     
-//     islipa(keleiviuSkaicius) {
-//         if (keleiviuSkaicius > this.keleiviuSkaicius) {
-//             this.keleiviuSkaicius = 0;
-//         } else {
-//             this.keleiviuSkaicius -= keleiviuSkaicius
-//         }
-//     }
+    islipa(keleiviuSkaicius) {
+        if (keleiviuSkaicius > this.keleiviuSkaicius) {
+            this.keleiviuSkaicius = 0;
+        } else {
+            this.keleiviuSkaicius -= keleiviuSkaicius
+        }
+    }
 
-//     vaziuoja() {
-//         if (this.keleiviuSkaicius == 0) {
-//             console.log('vaziuoja tuscias');
-//         }
+    vaziuoja() {
+        if (this.keleiviuSkaicius == 0) {
+            console.log('vaziuoja tuscias');
+        } else {
+            console.log(this.keleiviuSkaicius, ' keleiviu vaziuoja');
 
-//         console.log(this.keleiviuSkaicius);
-//     }
+        }
+    }
 
-// }
+}
 
-// const trolis = new Troleibusas();
+const trolis = new Troleibusas();
 
-// trolis.ilipa(60);
-// trolis.islipa(59);
-// trolis.vaziuoja();
+trolis.ilipa(60);
+trolis.islipa(59);
+trolis.vaziuoja();
 
 
 // Obj 6 ----------------------------------------
 
-// class Pinigine {
+class Pinigine2 {
 
-//     constructor() {
+    constructor() {
 
-//         this.popieriniaiPinigai = 0;
-//         this.metaliniaiPinigai = 0;
-//         this.monetos = 0;
-//         this.banknotai = 0;
+        this.popieriniaiPinigai = 0;
+        this.metaliniaiPinigai = 0;
+        this.monetos = 0;
+        this.banknotai = 0;
 
-//         }
+        }
 
-//     ideti(kiekis) {
-//         if (kiekis <= 2) {
+    ideti(kiekis) {
+        if (kiekis <= 2) {
 
-//             this.metaliniaiPinigai += kiekis;
-//             this.monetos++
-//         } else {
+            this.metaliniaiPinigai += kiekis;
+            this.monetos++
+        } else {
 
-//             this.popieriniaiPinigai += kiekis;
-//             this.banknotai++
-//         }
-//     }
+            this.popieriniaiPinigai += kiekis;
+            this.banknotai++
+        }
+    }
 
-//     skaiciuoti() {
-//         console.log('Pinigai: ', this.popieriniaiPinigai + this.metaliniaiPinigai, 'Monetos: ' , this.monetos, 'Banknotai: ', this.banknotai);
-//     }
+    skaiciuoti() {
+        console.log('Pinigai: ', this.popieriniaiPinigai + this.metaliniaiPinigai, 'Monetos: ' , this.monetos, 'Banknotai: ', this.banknotai);
+    }
 
-//     monetos() {
-//         console.log(this.monetos);
-//     }
+    monetos() {
+        console.log(this.monetos);
+    }
 
-//     banknotai() {
-//         console.log(this.banknotai);
-//     }
-// }
+    banknotai() {
+        console.log(this.banknotai);
+    }
+}
 
-// const pinigai = new Pinigine();
+const pinigai2 = new Pinigine2();
 
-// pinigai.ideti(15);
-// pinigai.ideti(1);
-// pinigai.ideti(2);
-// pinigai.ideti(3);
-// pinigai.ideti(4);
-// pinigai.skaiciuoti();
+pinigai2.ideti(15);
+pinigai2.ideti(1);
+pinigai2.ideti(2);
+pinigai2.ideti(3);
+pinigai2.ideti(4);
+pinigai2.skaiciuoti();
 
 // Obj 8 -------------------------------------------
 
@@ -170,7 +175,6 @@ class Stikline {
     }
 }
 
-// const pilam = new Stikline(365);
 const duSimtai = new Stikline(200);
 const simtasPem = new Stikline(150);
 const simtas = new Stikline(100);
@@ -178,16 +182,34 @@ const simtas = new Stikline(100);
 
 duSimtai.ipilti(200);
 simtasPem.ipilti(duSimtai.ispilti());
-simtasPem.stiklinejeYra();
 duSimtai.stiklinejeYra();
-simtas.ipilti(simtasPem.ispilti());
-simtas.stiklinejeYra();
 simtasPem.stiklinejeYra();
+simtas.ipilti(simtasPem.ispilti());
+simtasPem.stiklinejeYra();
+simtas.stiklinejeYra();
 
-// simtas.ipilti(simtasPem.ipilti(duSimtai.ispilti()))
-// console.log(duSimtai, simtasPem, simtas);
-// pilam.ipilti(360);
-// pilam.ipilti(4);
-// pilam.ispilti(400);
-// console.log(pilam);
-// console.log(pilam.kiekis);
+// Obj 9 --------------------------------------------
+
+class Grybas {
+    constructor() {
+        if (rand(0, 1) == 1) {
+            this.valgomas;
+        } else {
+            this.sukirmijes
+        }
+        this.svoris = rand(5, 45);
+    }
+    deti() {
+        
+    }
+
+}
+
+class Krepsys {
+
+    constructor() {
+        this.dydis = 500;
+        this.prikrauta = 0;
+    }
+
+}

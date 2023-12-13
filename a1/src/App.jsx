@@ -14,7 +14,7 @@ function App() {
       <header className="App-header">
         <LabasZuiki color={'pink'}></LabasZuiki>
         <VienasProps tekstas={'Bet koks tekstas propsas'} randomColor={randomColor}/>
-        <ZebraiIrBebrai spalva={1}/>
+        <ZebraiIrBebrai spalva={0}/>
         <SuDuProps betkoksh1={'Bet koks SuDuProps tekstas1'} betkoksh2={'Bet koks SuDuProps tekstas2'}/>
         <TrisProps pirmas={'Betkoks TrisProps tekstas1'} antras={'Betkoks TrisProps tekstas2'} spalva={{color: 'pink'}}/>
       </header>
