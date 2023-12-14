@@ -46,17 +46,16 @@ class Circle {
     // static circlesPlace;
     // static buttonsPlace;
 
-    static init(circlesPlace, buttonsPlace, count = 5) {
-        this.circlesPlace = circlesPlace;
-        this.buttonsPlace = buttonsPlace;
+    static init(lele, lala, count = 5) {
+        this.kuka = lele;
+        this.bukas1 = lala;
         for (let i = 0; i < count; i++) {
-            new this(circlesPlace);
+            new this(lele);
         }
-        this.createButton(buttonsPlace, 'Start changing colors', this.effectChangeColors.bind(this));
-        this.createButton(buttonsPlace, 'Move left', this.effectMoveLeft.bind(this))
-        this.createButton(buttonsPlace, 'Move right', this.effectMoveRight.bind(this))
-        this.createButton(buttonsPlace, 'Stop', _ => clearInterval(this.effectInterval));
-
+        this.createButton(bukas1, 'Start changing colors', this.effectChangeColors.bind(this));
+        this.createButton(bukas1, 'Move left', this.effectMoveLeft.bind(this))
+        this.createButton(bukas1, 'Move right', this.effectMoveRight.bind(this))
+        this.createButton(bukas1, 'Stop', _ => clearInterval(this.effectInterval));
     }
 
     static createButton(buttonsPlace, text, action) {
@@ -77,14 +76,14 @@ class Circle {
         clearInterval(this.effectInterval)
         this.effectInterval = setInterval(_ => {
             this.circles.push(this.circles.shift());
-            this.circles.forEach(circle => this.circlesPlace.appendChild(circle.circleDiv));
+            this.circles.forEach(circle => this.kuka.appendChild(circle.circleDiv));
         }, 500);
     }
     static effectMoveRight() {
         clearInterval(this.effectInterval)
         this.effectInterval = setInterval(_ => {
             this.circles.unshift(this.circles.pop());
-            this.circles.forEach(circle => this.circlesPlace.appendChild(circle.circleDiv))
+            this.circles.forEach(circle => this.kuka.appendChild(circle.circleDiv))
         }, 500);
     }
 
@@ -109,8 +108,8 @@ class Circle {
     }
 }
 
-const circlesPlace = document.querySelector('#circles');
-const buttonsPlace = document.querySelector('#buttons')
+const kuka = document.querySelector('#circles');
+const bukas1 = document.querySelector('#buttons');
 
 class Colors4 extends Circle {
     static colors = ['crimson', 'darkblue', 'darkgreen', 'darkorange'];
@@ -127,4 +126,10 @@ class Colors4 extends Circle {
     // }
 }
 // Circle.init(circlesPlace, buttonsPlace, 7)
-Colors4.init(circlesPlace, buttonsPlace, 4);
+Circle.init(kuka, bukas1, rand(10, 20));
+
+function rand(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}

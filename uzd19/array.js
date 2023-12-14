@@ -111,22 +111,55 @@ console.log(maxAgeOfAnimals);
 
 // animals.sort((a, b) => a.age - b.age); // ------------- rusiuoti Skaicius
 // animals.sort((a, b) => a.name[1].localeCompare(b.name[1])); // -------------- rusiuoti Stringus
-// animals.sort((a, b) => {
-//   if (a.species < b.species) {
-//     return -1;
-//   }
-//   if (a.species > b.species) {
-//     return 1;55
-//   }
-//   if (a.age < b.age) {
-//     return -1;
-//   }
-//   if (a.age > b.age) {
-//     return 1;
-//   }
-//   return 0;
-// });
+animals.sort((a, b) => {
+  if (a.species < b.species) {
+    return -1;
+  }
+  if (a.species > b.species) {
+    return 1;
+  }
+  if (a.age < b.age) {
+    return -1;
+  }
+  if (a.age > b.age) {
+    return 1;
+  }
+  return 0;
+});
 console.log(animals);
 
 
+const dogs = [
+  'Big Cow',
+  'Small Cow',
+  'Big Pig',
+  'Small Pig',
+  'Angry Chicken',
+  'Happy Chicken',
+  'Big Sheep',
+  'Bad Sheep',
+  'Big Goat',
+  'White Goat',
+  'Black Goat',
+  'Tiny Goat',
+  'Techno Chicken',
+  'Big Dog',
+  'Big Horse',
+  'Small Horse',
+  'Big Duck',
+  'Small Duck',
+  'Big Turkey',
+  'Very Big Turkey',
+  'Small Turkey'
+ ]
 
+dogs.sort((a, b) => {
+  if (a.length < b.length) {
+    return 1;
+  }
+  if (a.length > b.length) {
+    return -1;
+  }
+  return 0;
+});
+console.log(dogs);

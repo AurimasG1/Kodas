@@ -188,21 +188,70 @@ simtas.ipilti(simtasPem.ispilti());
 simtasPem.stiklinejeYra();
 simtas.stiklinejeYra();
 
-// Obj 9 --------------------------------------------
+// 5 -------------------------------------------------
+
+class PirkiniuKrepselis {
+    constructor() {
+        this.turinys = new Map();
+    }
+
+    idetiSureli(kiekis) {
+        if (this.turinys.has('sureliai')) {
+            this.turinys.set('sureliai', this.turinys.get('sureliai') + kiekis)
+        } else {
+            this.turinys.set('sureliai', kiekis);
+        }
+    }
+    idetiPieno(kiekis) {
+        if (this.turinys.has('pienas')) {
+            this.turinys.set('pienas', this.turinys.get('pienas') + kiekis)
+        } else {
+            this.turinys.set('pienas', kiekis);
+        }
+    }
+
+    idetiDuonos(kiekis) {
+        if (this.turinys.has('duona')) {
+            this.turinys.set('duona', this.turinys.get('duona') + kiekis)
+        } else {
+            this.turinys.set('duona', kiekis);
+        }
+    }
+    krepselioTurinys() {
+        console.log(this.turinys);
+        for (const produktas of this.turinys) {
+            console.log(`${produktas[0]} : ${produktas[1]}`);
+        }
+    }
+}
+
+const krepselis = new PirkiniuKrepselis();
+
+krepselis.idetiSureli(2);
+krepselis.idetiPieno(1);
+krepselis.idetiDuonos(1);
+krepselis.idetiPieno(1);
+
+krepselis.krepselioTurinys();
+
+
+// 9 ----------------------------------------------------
 
 class Grybas {
-    constructor() {
-        if (rand(0, 1) == 1) {
-            this.valgomas;
-        } else {
-            this.sukirmijes
-        }
-        this.svoris = rand(5, 45);
-    }
-    deti() {
-        
+    static g = {}
+    
+    rand(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    constructor() {
+        this.valgomas = !this.rand(0, 1)
+        this.sukirmijes = !this.rand(0, 1)
+        this.svoris = this.rand(5, 45);
+        console.log('svoris', this.svoris);
+    }
 }
 
 class Krepsys {
@@ -211,5 +260,37 @@ class Krepsys {
         this.dydis = 500;
         this.prikrauta = 0;
     }
-
+    ideti(grybas) {
+        if (grybas.valgomas && !grybas.sukirmijes) {
+            this.prikrauta += grybas.svoris;
+        }
+        return this.dydis > this.prikrauta;
+    }
 }
+
+
+const krepsys = new Krepsys();
+
+let s = 0;
+
+const g = new Grybas()
+
+while (krepsys.ideti(new Grybas())) {
+    s++
+    console.log('ciklas', s);
+    if (s == 1000) {
+        break;
+    }
+}
+console.log(krepsys);
+
+
+
+
+
+
+
+
+
+
+
