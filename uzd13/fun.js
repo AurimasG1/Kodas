@@ -112,8 +112,23 @@ console.log( fun10(8) );
 
 let result = fun10(8);
 
-console.log(result);
+console.log(Math.round(7.1));
 
-let fun11 = _ => console.log('This is dash');
+const x = 10;
+const y = 9;
+console.log(y - x > x - y);
 
-fun11();
+let Baba = 10
+let baba = 1
+console.log(Baba, baba);
+
+console.log(1 == "1");
+for(let i = 1; i < 5; i++) {
+console.log(i);
+}
+
+function sum(a, b) {
+    return a+b
+}
+
+console.log(sum('kaka', 1));
