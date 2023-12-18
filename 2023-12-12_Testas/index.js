@@ -46,25 +46,34 @@ bodyVieta.appendChild(buttonElementas2);
 buttonElementas2.addEventListener('click', _ => {
     skaicius1 = rand(1, 10);
     tusciasMas.push(skaicius1);
-    let sum = 0;
-    for (let i = 0; i < tusciasMas.length; i++) {
-    sum += tusciasMas[i]
-    }
-    h3Elementas.innerText = sum
-    // h3Elementas.innerText = skaiciuoti(tusciasMas)
+    // let sum = 0;
+    // for (let i = 0; i < tusciasMas.length; i++) {
+    // sum += tusciasMas[i]
+    // }
+    // h3Elementas.innerText = sum
+    h3Elementas.innerText = skaiciuoti(tusciasMas)
     console.log(tusciasMas);
 });
 
-// function skaiciuoti() {
-//    let sum = tusciasMas.reduce((acc, val) => acc + val, 0)
-//    return sum;
-// }
+function skaiciuoti() {
+   const sum = tusciasMas.reduce((acc, val) => acc + val, 0)
+   return sum;
+}
 
 // 3 ------------------------------------------------
 
 
 
-
+console.log("sumatorius skaichiuotuvas");
+const sumatorius = (...a) => {
+  console.log(a);
+  let sum = 0;
+  for (const b of a) {
+    sum += b[0] + b[3];
+  }
+  return sum;
+};
+console.log(sumatorius(1, 3, 5, 7, 9, 2, 4, 6, 8, 10));
 
 
 

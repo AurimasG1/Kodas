@@ -237,20 +237,21 @@ krepselis.krepselioTurinys();
 
 // 9 ----------------------------------------------------
 
+
 class Grybas {
     static g = {}
-    
-    rand(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
 
     constructor() {
         this.valgomas = !this.rand(0, 1)
         this.sukirmijes = !this.rand(0, 1)
         this.svoris = this.rand(5, 45);
         console.log('svoris', this.svoris);
+    }
+    
+    rand(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
 
@@ -275,7 +276,7 @@ let s = 0;
 
 const g = new Grybas()
 
-while (krepsys.ideti(new Grybas())) {
+while (krepsys.ideti(g)) {
     s++
     console.log('ciklas', s);
     if (s == 1000) {
@@ -285,12 +286,18 @@ while (krepsys.ideti(new Grybas())) {
 console.log(krepsys);
 
 
+const dogs = ['šuo', 'šunius', 'Bobikas', 'kudlius', 'Šarikas', 'avigalvis'];
+const itemsWithLength = dogs.map((item, index) => ({ name: item, length: item.length, index: index + 1 }));
+const sortedByLength = itemsWithLength.sort((a, b) => b.length - a.length);
+console.log(dogs);
+console.log(itemsWithLength)
+console.log(sortedByLength);
 
-
-
-
-
-
-
-
-
+sortedByLength.map((item, index) => {
+    const backgroundColor = item.length > 6 ? 'green' : 'red';
+    const circleStyle = {
+        background: backgroundColor,
+    }
+    return item.index, item.name, item.length
+})
+console.log(sortedByLength);
