@@ -29,32 +29,6 @@
   height: 20px;
 }
 
-.squares {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 70%;
-  gap: 10px;
-  margin: 20px;
-  .square {
-    width: 150px;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 16px;
-    background-color: #282c34;
-    border: 1px solid white;
-    border-radius: 10px;
-    &__animal {
-      letter-spacing: 1px;
-    }
-  }
-}
-
 .kvadratai {
   display: flex;
   flex-flow: row wrap;
@@ -126,4 +100,61 @@
   text-align: center;
   font-size: 10px;
   font-weight: bold;
+}
+
+.squares {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 1rem;
+  .square {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.8rem;
+    background-color: #282c34;
+    border: 1px solid white;
+    border-radius: 10px;
+    letter-spacing: 2px;
+    padding: 1em;
+    &__animal {
+      letter-spacing: 2px;
+    }
+    &.spin {
+      animation: spin 30s linear infinite;
+    }
+    &.pointer {
+      cursor: pointer;
+    }
+    &.big {
+      width: 200px;
+      height: 200px;
+      &.pointer {
+        user-select: none;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  } 
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

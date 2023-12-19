@@ -8,7 +8,7 @@ export default function Bala({ masyvas }) {
         {
         masyvas.map(({ id, type, name, color }) => (
           <li key={id}>
-            {`${type} - ${name} (${color})`}
+            {`${id} ${type} - ${name} (${color})`}
           </li>
         ))
         }
