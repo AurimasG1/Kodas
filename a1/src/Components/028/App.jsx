@@ -53,7 +53,7 @@ export default function App() {
       <div className='buttons'>
         <button className='yellow' onClick={add}>ADD SQUARE</button>
         <button className='red' onClick={reset}>RESET</button>
-        <button className='green' onClick={_ => setSquares(item => item.map(item => ({...item, show: true})))}>*</button>
+        <button className='green' onClick={_ => setSquares(squaresState => squaresState.map(item => ({...item, show: true})))}>*</button>
         <button className='black' onClick={syncSpin}>sync</button>
       </div>
       <div className='squares'>

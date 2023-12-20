@@ -1,5 +1,6 @@
 import Daiktas from './Daiktas'
-export default function Tvenkinys({ seaPlaners, kazkas }) {
+import {seaPlaners} from '../../Duomenys'
+export default function Tvenkinys({ kazkas }) {
     return (
       <div className="squares">
         <h4>{kazkas === 'poriniai' ? 'Poriniai ID' : 'nePoriniai ID'}</h4>

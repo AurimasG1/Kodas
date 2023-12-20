@@ -2,8 +2,9 @@ import Akvariumas from "./Akvariumas";
 import Garazas from "./Garazas";
 import Namas from "./Namas";
 import Narvas from "./Narvas";
+import {seaPlaners} from '../../Duomenys'
 
-export default function Pasaulis({ seaPlaners, kazkas}) {
+export default function Pasaulis({ kazkas }) {
     return (
       <div className="squares">
         <h4>{kazkas}</h4>

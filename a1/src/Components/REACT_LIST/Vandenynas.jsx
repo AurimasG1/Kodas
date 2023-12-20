@@ -1,28 +1,39 @@
 import Spalva from "./Spalva";
 import Tipas from "./Tipas";
 import Vardas from "./Vardas";
+import {seaPlaners} from '../../Duomenys'
 
-export default function Vandenynas({ seaPlaners, kazkas}) {
+export default function Vandenynas({ kazkas }) {
+
+  const surusiuotasSeaPlaners = kazkas === 'type' 
+  ? seaPlaners.sort((a, b) => a.type.localeCompare(b.type))
+  : kazkas === 'name' 
+  ? seaPlaners.sort((a, b) => a.name.localeCompare(b.name)) 
+  : seaPlaners.sort((a, b) => a.color.localeCompare(b.color))  
+
+  // let surusiuotasSeaPlaners = [];
+  // if (kazkas === 'type') {
+  //   surusiuotasSeaPlaners = seaPlaners.sort((a, b) => a.type.localeCompare(b.type));
+  // } else if (kazkas === 'name') {
+  //   surusiuotasSeaPlaners = seaPlaners.sort((a, b) => a.name.localeCompare(b.name));
+  // } else if (kazkas === 'color') {
+  //   surusiuotasSeaPlaners = seaPlaners.sort((a, b) => a.color.localeCompare(b.color));
+  // }
+
+  const ComponentoPasirinkimas = kazkas === 'type' 
+  ? Tipas 
+  : kazkas === 'name' 
+  ? Vardas 
+  : Spalva;
+
     return (
       <div className="squares">
         <h4>{kazkas}</h4>
-        {seaPlaners
-          .sort((a, b) => (a.type[0].localeCompare(b.type[0])))
-          .map((lele) => (
-            kazkas === 'Pagal tipą' ? <Tipas key={lele.id} item={lele}/> : null
-          ))
+        {
+        surusiuotasSeaPlaners.map((lele) => (
+          <ComponentoPasirinkimas key={lele.id} item={lele}/>
+        ))
         }
-        {seaPlaners
-          .sort((a, b) => (a.name[0].localeCompare(b.name[0])))
-          .map((lele) => (
-            kazkas === 'Pagal vardą' ?<Vardas key={lele.id} item={lele}/> : null
-          ))
-        }{seaPlaners
-            .sort((a, b) => (a.color[0].localeCompare(b.color[0])))
-            .map((lele) => (
-            kazkas === 'Pagal spalvą' ? <Spalva key={lele.id} item={lele}/> : null
-            ))
-          }
       </div>
     );
 }

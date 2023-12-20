@@ -274,30 +274,30 @@ const krepsys = new Krepsys();
 
 let s = 0;
 
-const g = new Grybas()
-
-while (krepsys.ideti(g)) {
-    s++
-    console.log('ciklas', s);
-    if (s == 1000) {
-        break;
+while (krepsys.prikrauta < krepsys.dydis) {
+    const g = new Grybas()
+    console.log(g);
+    if (g.valgomas && !g.sukirmijes) {
+        krepsys.ideti(g);
+        console.log(krepsys.prikrauta);
     }
 }
+
 console.log(krepsys);
 
 
-const dogs = ['šuo', 'šunius', 'Bobikas', 'kudlius', 'Šarikas', 'avigalvis'];
-const itemsWithLength = dogs.map((item, index) => ({ name: item, length: item.length, index: index + 1 }));
-const sortedByLength = itemsWithLength.sort((a, b) => b.length - a.length);
-console.log(dogs);
-console.log(itemsWithLength)
-console.log(sortedByLength);
+// const dogs = ['šuo', 'šunius', 'Bobikas', 'kudlius', 'Šarikas', 'avigalvis'];
+// const itemsWithLength = dogs.map((item, index) => ({ name: item, length: item.length, index: index + 1 }));
+// const sortedByLength = itemsWithLength.sort((a, b) => b.length - a.length);
+// console.log(dogs);
+// console.log(itemsWithLength)
+// console.log(sortedByLength);
 
-sortedByLength.map((item, index) => {
-    const backgroundColor = item.length > 6 ? 'green' : 'red';
-    const circleStyle = {
-        background: backgroundColor,
-    }
-    return item.index, item.name, item.length
-})
-console.log(sortedByLength);
+// sortedByLength.map((item, index) => {
+//     const backgroundColor = item.length > 6 ? 'green' : 'red';
+//     const circleStyle = {
+//         background: backgroundColor,
+//     }
+//     return item.index, item.name, item.length
+// })
+// console.log(sortedByLength);

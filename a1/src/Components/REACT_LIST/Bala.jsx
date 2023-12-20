@@ -1,18 +1,19 @@
 import React from 'react';
+import {seaPlaners} from '../../Duomenys'
 
-export default function Bala({ masyvas }) {
+export default function Bala() {
   return (
-    <div>
-      <h2>Bala Component</h2>
-      <ul>
-        {
-        masyvas.map(({ id, type, name, color }) => (
-          <li key={id}>
-            {`${id} ${type} - ${name} (${color})`}
-          </li>
+    <div className='squares'>
+      <h4>Bala</h4>
+        {seaPlaners.map((item) => (
+          <div key={item.id} className='square'>
+            <p>ID: {item.id}</p>
+            <p>Type: {item.type}</p>
+            <p style={{color: item.color}}>Name: {item.name}</p>
+            <p>Color: {item.color}</p>
+          </div>
         ))
         }
-      </ul>
     </div>
   );
 }
