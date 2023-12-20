@@ -9,16 +9,7 @@ export default function Vandenynas({ kazkas }) {
   ? seaPlaners.sort((a, b) => a.type.localeCompare(b.type))
   : kazkas === 'name' 
   ? seaPlaners.sort((a, b) => a.name.localeCompare(b.name)) 
-  : seaPlaners.sort((a, b) => a.color.localeCompare(b.color))  
-
-  // let surusiuotasSeaPlaners = [];
-  // if (kazkas === 'type') {
-  //   surusiuotasSeaPlaners = seaPlaners.sort((a, b) => a.type.localeCompare(b.type));
-  // } else if (kazkas === 'name') {
-  //   surusiuotasSeaPlaners = seaPlaners.sort((a, b) => a.name.localeCompare(b.name));
-  // } else if (kazkas === 'color') {
-  //   surusiuotasSeaPlaners = seaPlaners.sort((a, b) => a.color.localeCompare(b.color));
-  // }
+  : seaPlaners.sort((a, b) => a.color.localeCompare(b.color));
 
   const ComponentoPasirinkimas = kazkas === 'type' 
   ? Tipas 
@@ -33,7 +24,7 @@ export default function Vandenynas({ kazkas }) {
         surusiuotasSeaPlaners.map((lele) => (
           <ComponentoPasirinkimas key={lele.id} item={lele}/>
         ))
-        }
+        };
       </div>
     );
 }
