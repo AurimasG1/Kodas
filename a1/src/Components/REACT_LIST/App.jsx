@@ -9,7 +9,7 @@ export default function App() {
 
   return (
     <div className="App-header">
-      <h1>Main Component</h1>
+      <h1>React LIST</h1>
       <Bala/>
       <Tvenkiniai/>
       <Juros/>

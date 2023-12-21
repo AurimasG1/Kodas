@@ -32,14 +32,14 @@ h3, h4, h5, h6 {
   height: 20px;
 }
 
-.kvadratai {
+.squares {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-self: center;
   gap: 5px;
   margin: 5px;
-  .kvadratas {
+  .square {
     width: 100px;
     height: 100px;
     border-radius: 1px;
@@ -52,14 +52,14 @@ h3, h4, h5, h6 {
   }
 }
 
-.apskritimai {
+.circles {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-self: center;
   gap: 5px;
   margin: 5px;
-  .apskritimas {
+  .circle {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -166,4 +166,29 @@ h3, h4, h5, h6 {
   width: 300px;
   height: 300px;
   border-radius: 50%;
+}
+.circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  border: 1px solid white;
+}
+.square {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.8rem;
+  background-color: #282c34;
+  border: 1px solid white;
+  border-radius: 10px;
+  letter-spacing: 2px;
+  padding: 1em;
 }

@@ -15,7 +15,6 @@ const tipai =  [...new Set(seaPlaners.map(item => item.type))];
 const vardai =  [...new Set(seaPlaners.map(item => item.name))];
 const spalvos =  [...new Set(seaPlaners.map(item => item.color))];
 
-
 const seaPlaners2 = [
     { id: 1, type: 'man', name: 'Lina', color: 'blue' },
     { id: 2, type: 'car', name: 'Opel', color: 'red' },
