@@ -249,7 +249,6 @@ if (hasDriversLicense && hasGoodVision && !isTired) {
 } else {
     console.log(`Someone else should drive...`);
 }
-*/
 
 const dolphins1 = 103;
 const dolphins2 = 108;
@@ -291,3 +290,80 @@ lines');
 console.log(`String with
 multile
 lines`);
+
+const day = 'thursday';
+
+switch(day) {
+    case 'monday': // day === 'monday'
+        console.log('Plan course structure ');
+        console.log('Go to conding meetup');
+        break;
+    case 'tuesday':
+        console.log('Prepare theory videos');
+        break;
+    case 'wednesday':
+    case 'thursday':
+        console.log('Write code examples');
+        break;
+    case 'friday':
+        console.log('Record videos');
+        break;
+    case 'saturday':
+    case 'sunday':
+        console.log('Enjoy the weekend :D');
+        break;
+    default:
+        console.log('Not a valid day!')
+
+}
+
+const language = 'arabic'
+
+switch (language) {
+    case 'chinese':
+    case 'mandarin':
+        console.log('MOST number of native speakers!');
+        break;
+    case 'spanish':
+        console.log('2nd place in number of native speakers!');
+        break;
+    case 'english':
+        console.log(`3rd place`);
+        break;
+    case 'hindi':
+        console.log(`Number 4`);
+        break;
+    case 'arabic':
+        console.log(`5th most spoken language`);
+        break;
+    default:
+        console.log(`Great language too :D`);
+}
+
+
+const age = 23;
+// age >= 18 ? console.log(`i like to drink wine`) :
+// console.log(`i like to drink water`);
+
+const drink = age >= 18 ? 'wine' : 'water';
+
+console.log(drink);
+
+let drink2;
+
+if(age >= 18) {
+    drink2 = 'wine';
+} else {
+    drink2 = 'water';
+}
+console.log(drink2);
+
+console.log(`I like to drink ${age >= 18 ? 'wine' : 'water'}`);
+
+const bill = 50;
+const tip = bill >= 50 && bill <= 300 ? bill*0.15 : bill*0.2;
+console.log(tip);
+// console.log(`The bill was ${bill}, the tip waWs ${tip}, and the total value was ${bill + tip}`);
+
+*/
+
