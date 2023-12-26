@@ -11,6 +11,8 @@ console.log(document.querySelector('.guess').value);
 
 */
 
+const number = Math.random();
+
 document.querySelector('.check').addEventListener('click', _ => {
   const guess = Number(document.querySelector('.guess').value);
   console.log(guess, typeof guess);
