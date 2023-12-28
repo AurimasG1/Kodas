@@ -8,7 +8,7 @@ import {lsRead, lsStore} from './Components/032 colors/lsManager';
 import Read from './Components/032 colors/Read';
 
 export default function App() {
-  const key = 'colors';
+  const KEY = 'colors';
   const [createData, setCreateData] = useState(null);
   const [colors, setColors] = useState([]);
 
@@ -17,14 +17,14 @@ export default function App() {
       if (null === createData) {
         return;
       }
-      lsStore(key, createData);
+      lsStore(KEY, createData);
       console.log(createData);
     },
     [createData]
   );
 
   useEffect(_ => {
-    setColors(lsRead(key));
+    setColors(lsRead(KEY));
   }, []);
 
   return (

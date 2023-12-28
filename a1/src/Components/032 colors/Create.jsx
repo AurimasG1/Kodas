@@ -15,34 +15,32 @@ export default function Create({setCreateData}) {
       <div className="card-header">
         <h2>Create new color</h2>
       </div>
-      <div className="card-body"></div>
-      <div className="mb-3">
-        <label className="form-label">Color code</label>
-        <input
-          type="color"
-          className="form-control form-control-color"
-          value={color}
-          onChange={e => setColor(e.target.value)}
-        />
-      </div>
-      <div className="mb-3">
-        <label for="customRange1" className="form-label">
-          Square size {size} px
-        </label>
-        <input
-          type="range"
-          className="form-range"
-          id="customRange1"
-          min="100"
-          max="300"
-          value={size}
-          onChange={e => setSize(e.target.value)}
-        />
-      </div>
-      <div className="mb-3">
-        <button className="green" onClick={handleSubmit}>
-          Add new color
-        </button>
+      <div className="card-body">
+        <div className="mb-3">
+          <label className="form-label">Color code</label>
+          <input
+            type="color"
+            className="form-control form-control-color"
+            value={color}
+            onChange={e => setColor(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Square size {size} px</label>
+          <input
+            type="range"
+            className="form-range"
+            min="100"
+            max="300"
+            value={size}
+            onChange={e => setSize(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <button className="green" onClick={handleSubmit}>
+            Add new color
+          </button>
+        </div>
       </div>
     </div>
   );

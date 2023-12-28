@@ -1,3 +1,3 @@
 export function Show({color}) {
-  return <h2 style={{color: color.color}}>color</h2>;
+  return <h2 style={{color: color.color}}>Color</h2>;
 }
