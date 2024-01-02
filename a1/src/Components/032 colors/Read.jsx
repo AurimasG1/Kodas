@@ -1,6 +1,6 @@
 import {Show} from './Show';
 
-export default function Read({colors}) {
+export default function Read({colors, setDeleteData, setEditData}) {
   return (
     <div className="card">
       <div className="card-header">
@@ -10,7 +10,11 @@ export default function Read({colors}) {
         <ul className="list-group">
           {colors.map(color => (
             <li key={color.id} className="list-group-item">
-              <Show color={color} />
+              <Show
+                color={color}
+                setDeleteData={setDeleteData}
+                setEditData={setEditData}
+              />
             </li>
           ))}
         </ul>

@@ -1,9 +1,12 @@
-h3, h4, h5, h6 {
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }
+
 .App {
   text-align: center;
-  
 }
 
 .App-header {
@@ -16,7 +19,6 @@ h3, h4, h5, h6 {
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
 
 .sq-bin {
   display: flex;
@@ -34,122 +36,45 @@ h3, h4, h5, h6 {
 
 .squares {
   display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-self: center;
-  gap: 5px;
-  margin: 5px;
-  .square {
-    width: 100px;
-    height: 100px;
-    border-radius: 1px;
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    border: 1px solid black;
-  }
-}
-
-.circles {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-self: center;
-  gap: 5px;
-  margin: 5px;
-  .circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    border: 1px solid white;
-  }
-}
-.dogs {
-  display: flex;
-  gap: 10px;
-  margin: 30px;
-  .dog {
-  width: 100px;
-  height: 100px;
-  border: 1px solid white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 16px;
-}
-.circle {
-  border-radius: 50%;
-}
-.square {
-  border: 1px solid gray;
-}
-}
-.circle {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  text-align: center;
-  font-size: 10px;
-  font-weight: bold;
-}
-
-.squares {
-  display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 5px;
-  margin: 1rem;
+  width: 70%;
+  gap: 10px;
+  margin: 20px;
   .square {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 0.8rem;
+    font-size: 16px;
     background-color: #282c34;
     border: 1px solid white;
     border-radius: 10px;
-    letter-spacing: 2px;
-    padding: 1em;
     &__animal {
       letter-spacing: 2px;
     }
     &.spin {
-      animation: spin 30s linear infinite;
+      animation: spin 10s linear infinite;
+    }
+    &.pulse {
+      animation: pulse 1s linear infinite;
+      animation-delay: 0.5s;
     }
     &.pointer {
       cursor: pointer;
+      user-select: none;
     }
     &.big {
-      width: 200px;
-      height: 200px;
-      &.pointer {
-        user-select: none;
-      }
+      width: 300px;
+      height: 300px;
     }
   }
 }
 
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  } 
-}
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -162,90 +87,50 @@ h3, h4, h5, h6 {
   }
 }
 
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.dogs {
+  display: flex;
+  gap: 10px;
+  margin: 30px;
+  .dog {
+    width: 100px;
+    height: 100px;
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+  }
+  .circle {
+    border-radius: 50%;
+  }
+  .square {
+    border: 1px solid gray;
+  }
+}
+
 .color-circle {
   width: 300px;
   height: 300px;
   border-radius: 50%;
 }
-.circle {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  border: 1px solid white;
-}
-.square {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 0.8rem;
-  background-color: #282c34;
-  border: 1px solid white;
-  border-radius: 10px;
-  letter-spacing: 2px;
-  padding: 1em;
-}
 
-.staciakampis {
-  width: 80%;
-  height: 100%;
-  border: 2px solid green;
+.modal {
+  display: block;
+  background-color: #282c3477;
+}
+.showLine {
   display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-around;
-  gap: 5px;
-  margin: 1rem;
-  .staciakampioVidus1 {
-    display: flex;
-    flex-flow: row wrap;
-    border: 1px solid white;
-    width: 20%;
-    height: 200px;
-    align-items: center;
-    justify-content: center;
-    .mazasviduje {
-      text-align: center;
-      line-height: 46px;
-      font-size: 1rem;
-      width: 20%;
-      height: 20%;
-      border: 1px solid white;
-      margin: 5px;
-    }
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  .buttons {
+    justify-content: flex-end;
   }
-}
-.square-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.square {
-  margin: 10px;
-  padding: 10px;
-  background-color: black;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  button {
-    margin-bottom: 5px;
-  }
-
-  .count {
-    font-size: 18px;
-  }
-}
-
-button {
-  font-size: 16px;
-  margin-bottom: 20px;
 }
