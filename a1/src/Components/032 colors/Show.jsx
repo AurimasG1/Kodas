@@ -1,4 +1,4 @@
-export function Show({color, setDeleteData, setEdiData}) {
+export function Show({color, setDeleteData, setEditData}) {
   return (
     <div className="showLine">
       <div
@@ -15,7 +15,7 @@ export function Show({color, setDeleteData, setEdiData}) {
         <button className="red" onClick={_ => setDeleteData(color)}>
           Delete
         </button>
-        <button className="green" onClick={_ => setEdiData(color)}>
+        <button className="green" onClick={_ => setEditData(color)}>
           Edit
         </button>
       </div>

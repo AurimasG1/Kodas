@@ -7,7 +7,7 @@ export default function Delete({deleteData, setDeleteData, setDestroyData}) {
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Delete</h5>
+            <h5 className="modal-title">Confirm</h5>
             <button
               type="button"
               className="btn-close"

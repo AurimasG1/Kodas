@@ -16,12 +16,16 @@ import Edit from './Components/032 colors/Edit';
 
 export default function App() {
   const KEY = 'colors';
+  const [colors, setColors] = useState([]); // readData
   const [createData, setCreateData] = useState(null);
-  const [colors, setColors] = useState([]);
   const [deleteData, setDeleteData] = useState(null);
   const [destroyData, setDestroyData] = useState(null);
   const [editData, setEditData] = useState(null);
   const [updateData, setUpdateData] = useState(null);
+
+  useEffect(_ => {
+    setColors(lsRead(KEY));
+  }, []);
 
   useEffect(
     _ => {
@@ -48,10 +52,6 @@ export default function App() {
     [destroyData]
   );
 
-  useEffect(_ => {
-    setColors(lsRead(KEY));
-  }, []);
-
   useEffect(
     _ => {
       if (null === updateData) {
@@ -60,7 +60,7 @@ export default function App() {
       lsUpdate(KEY, updateData.id, updateData);
       setColors(prevColors =>
         prevColors.map(color =>
-          color.id !== updateData.id
+          color.id === updateData.id
             ? {...updateData, id: updateData.id}
             : color
         )
