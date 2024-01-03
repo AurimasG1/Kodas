@@ -56,7 +56,6 @@ const newPassport = function (person) {
 newPassport(jonas);
 console.log(jonas);
 checkIn(flight, jonas);
-*/
 
 const oneWord = function (str) {
   return str.replaceAll(' ', '').toLowerCase();
@@ -248,3 +247,102 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
 // [5, 2, 3]
 // [1, 5, 3, 9, 6, 1]
+*/
+
+const runOnce = function () {
+  console.log('This will never run again');
+};
+runOnce();
+
+// IIFE
+(function () {
+  console.log('This will never run again');
+  const isPrivate = 23;
+})();
+
+// console.log(isPrivate);
+
+(() => console.log('This will ALSO never run again'))();
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+// console.log(isPrivate);
+console.log(notPrivate);
+
+const secureBooking = function () {
+  let passengerCount = 0;
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
+
+// Example 1
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+console.dir(f);
+
+// Re-assigning f function
+h();
+f();
+console.dir(f);
+
+// Example 2
+
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+  console.log(`WIll start boarding in ${wait} seconds`);
+};
+
+const perGroup = 1000;
+boardPassengers(180, 3);
+
+// (function () {
+//   const header = document.querySelector('h1');
+//   header.style.color = 'red';
+//   return kaka(header);
+// })();
+
+// function kaka(header) {
+//   document.body.addEventListener('click', function () {
+//     header.style.color = 'blue';
+//   });
+// }
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+  document.body.addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
