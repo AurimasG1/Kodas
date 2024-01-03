@@ -128,9 +128,36 @@ h6 {
 .showLine {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   .buttons {
     justify-content: flex-end;
+    width: 200px;
   }
+}
+.messages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  position: fixed;
+  right: 10px;
+  top: 50px;
+  .alert {
+    width: 100%;
+  }
+}
+.color-name {
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+}
+.square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

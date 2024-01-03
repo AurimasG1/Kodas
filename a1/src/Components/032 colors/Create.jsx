@@ -5,7 +5,7 @@ export default function Create({setCreateData}) {
   const [size, setSize] = useState(100);
 
   const handleSubmit = _ => {
-    setCreateData({color, size: +size}); // +size converts string to number
+    setCreateData({color, size: +size, name: 'New color'}); // +size converts string to number
     setColor('#000000');
     setSize(100);
   };

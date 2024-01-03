@@ -3,7 +3,7 @@ import './App.scss';
 import './Buttons.scss';
 import './form.scss';
 import Create from './Components/032 colors/Create';
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {
   lsDestroy,
   lsRead,
@@ -13,6 +13,9 @@ import {
 import Read from './Components/032 colors/Read';
 import Delete from './Components/032 colors/Delete';
 import Edit from './Components/032 colors/Edit';
+import Messages from './Components/032 colors/Messages';
+import {v4 as uuidv4} from 'uuid';
+import axios from 'axios';
 
 export default function App() {
   const KEY = 'colors';
@@ -22,6 +25,15 @@ export default function App() {
   const [destroyData, setDestroyData] = useState(null);
   const [editData, setEditData] = useState(null);
   const [updateData, setUpdateData] = useState(null);
+  const [messages, setMessages] = useState([]);
+
+  const addMessage = useCallback((type, text) => {
+    const id = uuidv4();
+    setMessages(prevMessages => [{id, type, text}, ...prevMessages]);
+    setTimeout(_ => {
+      setMessages(prevMessages => prevMessages.filter(m => m.id !== id));
+    }, 3000);
+  }, []);
 
   useEffect(_ => {
     setColors(lsRead(KEY));
@@ -34,8 +46,24 @@ export default function App() {
       }
       const id = lsStore(KEY, createData);
       setColors(prevColors => [...prevColors, {...createData, id}]);
+      // get name for color
+      const color = createData.color.replace('#', '');
+      axios
+        .get(`https://www.thecolorapi.com/id?hex=${color}`)
+        .then(res => {
+          const name = res.data.name.value;
+          const newData = {...createData, id, name};
+          lsUpdate(KEY, id, updateData);
+          setColors(prevColors =>
+            prevColors.map(color => (color.id === id ? newData : color))
+          );
+          addMessage('info', 'Color name updated from APP');
+        })
+        .catch(_ => {
+          console.log('error');
+        });
     },
-    [createData]
+    [createData, setColors, addMessage]
   );
 
   useEffect(
@@ -48,8 +76,9 @@ export default function App() {
         prevColors.filter(color => color.id !== destroyData.id)
       );
       setDeleteData(null);
+      addMessage('danger', 'color destroyed succesfully');
     },
-    [destroyData]
+    [destroyData, setColors, addMessage]
   );
 
   useEffect(
@@ -57,17 +86,30 @@ export default function App() {
       if (null === updateData) {
         return;
       }
-      lsUpdate(KEY, updateData.id, updateData);
+      const id = updateData.id;
+      lsUpdate(KEY, id, updateData);
       setColors(prevColors =>
-        prevColors.map(color =>
-          color.id === updateData.id
-            ? {...updateData, id: updateData.id}
-            : color
-        )
+        prevColors.map(color => (color.id === id ? {...updateData, id} : color))
       );
       setEditData(null);
+      addMessage('success', 'color updated succesfully');
+      const color = updateData.color.replace('#', '');
+      axios
+        .get(`https://www.thecolorapi.com/id?hex=${color}`)
+        .then(res => {
+          const name = res.data.name.value;
+          const newData = {...updateData, id, name};
+          lsUpdate(KEY, id, newData);
+          setColors(prevColors =>
+            prevColors.map(color => (color.id === id ? newData : color))
+          );
+          addMessage('info', 'Color name updated from APP');
+        })
+        .catch(_ => {
+          console.log('error');
+        });
     },
-    [updateData]
+    [updateData, setColors, addMessage]
   );
 
   return (
@@ -96,6 +138,7 @@ export default function App() {
         setEditData={setEditData}
         setUpdateData={setUpdateData}
       />
+      <Messages messages={messages} />
     </>
   );
 }

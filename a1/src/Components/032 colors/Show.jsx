@@ -2,6 +2,7 @@ export function Show({color, setDeleteData, setEditData}) {
   return (
     <div className="showLine">
       <div
+        className="square"
         style={{
           backgroundColor: color.color,
           width: color.size / 2 + 'px',
@@ -11,6 +12,7 @@ export function Show({color, setDeleteData, setEditData}) {
       >
         Color
       </div>
+      <div className="color-name">{color.name}</div>
       <div className="buttons">
         <button className="red" onClick={_ => setDeleteData(color)}>
           Delete
