@@ -53,7 +53,7 @@ export default function App() {
         .then(res => {
           const name = res.data.name.value;
           const newData = {...createData, id, name};
-          lsUpdate(KEY, id, updateData);
+          lsUpdate(KEY, id, newData);
           setColors(prevColors =>
             prevColors.map(color => (color.id === id ? newData : color))
           );

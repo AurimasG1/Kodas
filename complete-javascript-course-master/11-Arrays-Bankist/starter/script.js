@@ -79,6 +79,17 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+const createUsernames = function (user) {
+  const username = user
+    .toLocaleLowerCase()
+    .split(' ')
+    .map(item => item[0])
+    .join('');
+  return username;
+};
+
+console.log(createUsernames('Steven Thomas Williams')); // stw
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
