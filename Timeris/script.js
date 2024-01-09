@@ -1,27 +1,102 @@
-// Set the date we're counting down to
-var countDownDate = new Date('Jan 5, 2024 14:37:25').getTime();
+// Wrap the code in an IIFE (Immediately Invoked Function Expression)
+(function () {
+  let minutesInput;
+  let secondsInput;
+  let timerDisplay;
+  let startStopBtn;
+  let resetBtn;
+  let timer;
+  let totalSeconds;
+  let remainingSeconds;
 
-// Update the count down every 1 second
-var x = setInterval(function () {
-  // Get today's date and time
-  var now = new Date().getTime();
+  function init() {
+    minutesInput = document.getElementById('minutesInput');
+    secondsInput = document.getElementById('secondsInput');
+    timerDisplay = document.getElementById('timeDisplay');
+    startStopBtn = document.getElementById('startStopBtn');
+    resetBtn = document.getElementById('resetBtn');
 
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+    startStopBtn.addEventListener('click', function () {
+      if (startStopBtn.textContent === 'Start') {
+        startTimer();
+        startStopBtn.textContent = 'Stop';
+      } else {
+        stopTimer();
+        startStopBtn.textContent = 'Start';
+      }
+    });
 
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    resetBtn.addEventListener('click', function () {
+      resetTimer();
+      if (startStopBtn.textContent === 'Stop') {
+        startStopBtn.textContent = 'Start';
+      }
+    });
 
-  // Display the result in the element with id="demo"
-  document.getElementById('timeris').innerHTML =
-    days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+    // Listen for input events on minutesInput and secondsInput
+    minutesInput.addEventListener('input', handleInput);
+    secondsInput.addEventListener('input', handleInput);
 
-  // If the count down is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById('timeris').innerHTML = 'EXPIRED';
+    updateDisplay();
   }
-}, 1000);
+
+  function updateDisplay() {
+    const min = String(Math.trunc(totalSeconds / 60)).padStart(2, '0');
+    const sec = String(totalSeconds % 60).padStart(2, '0');
+    timerDisplay.textContent = `${min}:${sec}`;
+  }
+
+  function handleInput() {
+    // Validate input and update totalSeconds
+    const minutes = parseInt(minutesInput.value, 10) || 0;
+    const seconds = parseInt(secondsInput.value, 10) || 0;
+
+    totalSeconds = minutes * 60 + seconds;
+
+    if (totalSeconds < 0) {
+      alert('Įveskite laiką: x, x');
+      totalSeconds = 0;
+    }
+
+    updateDisplay();
+  }
+
+  function startTimer() {
+    if (!timer) {
+      remainingSeconds = totalSeconds;
+    }
+
+    if (totalSeconds >= 0) {
+      updateDisplay();
+      timer = setInterval(function () {
+        if (totalSeconds === 0) {
+          clearInterval(timer);
+          alert('Laikas baigėsi');
+          resetTimer();
+        } else {
+          updateDisplay();
+          totalSeconds--;
+        }
+      }, 1000);
+    } else {
+      alert('Įveskite laiką: x, x');
+    }
+  }
+
+  function stopTimer() {
+    clearInterval(timer);
+    remainingSeconds = totalSeconds;
+    updateDisplay();
+  }
+
+  function resetTimer() {
+    stopTimer();
+    totalSeconds =
+      parseInt(minutesInput.value, 10) * 60 + parseInt(secondsInput.value, 10);
+    remainingSeconds = 0; // Reset the remaining seconds
+    updateDisplay();
+  }
+
+  // Call init function when the DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', init);
+})();

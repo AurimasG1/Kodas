@@ -3,11 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="http://127.0.0.1:5500/Timeris/script.js"></script>
+    <script src="http://127.0.0.1:5500/Timeris/script.js" defer></script>
     <title>Timeris</title>
   </head>
   <body>
-    <!-- Display the countdown timer in an element -->
-    <p id="timeris"></p>
-  </body>
+    <h1>Vanilla JS Timer</h1>
+    <div>
+      <label for="minutesInput">Minutės: </label>
+      <input type="number" id="minutesInput" min="0" step="1" value="0">
+      <label for="secondsInput">Sekundės: </label>
+      <input type="number" id="secondsInput" min="0" step="1" value="0">
+    </div>
+    <div>
+      <p id="timer">Laiko liko: <span id="timeDisplay"></span></p>
+      <button id="startStopBtn">Start</button>
+      <button id="resetBtn">Reset</button>
+    </div>
 </html>
