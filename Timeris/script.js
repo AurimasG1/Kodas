@@ -1,4 +1,3 @@
-// Wrap the code in an IIFE (Immediately Invoked Function Expression)
 (function () {
   let minutesInput;
   let secondsInput;
@@ -33,7 +32,6 @@
       }
     });
 
-    // Listen for input events on minutesInput and secondsInput
     minutesInput.addEventListener('input', handleInput);
     secondsInput.addEventListener('input', handleInput);
 
@@ -47,7 +45,6 @@
   }
 
   function handleInput() {
-    // Validate input and update totalSeconds
     const minutes = parseInt(minutesInput.value, 10) || 0;
     const seconds = parseInt(secondsInput.value, 10) || 0;
 
@@ -71,7 +68,9 @@
       timer = setInterval(function () {
         if (totalSeconds === 0) {
           clearInterval(timer);
-          alert('Laikas baigėsi');
+          alert(
+            'Laikas baigėsi. Užtrukau kol sudėliojau taip kaip norėjau, tad css nebeliko noro'
+          );
           resetTimer();
         } else {
           updateDisplay();
@@ -93,10 +92,9 @@
     stopTimer();
     totalSeconds =
       parseInt(minutesInput.value, 10) * 60 + parseInt(secondsInput.value, 10);
-    remainingSeconds = 0; // Reset the remaining seconds
+    remainingSeconds = 0;
     updateDisplay();
   }
 
-  // Call init function when the DOM is fully loaded
   document.addEventListener('DOMContentLoaded', init);
 })();
