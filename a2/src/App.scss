@@ -172,3 +172,11 @@ h6 {
   margin: 30px;
   border: 2px solid gray;
 }
+.animal-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+  width: 100px;
+}

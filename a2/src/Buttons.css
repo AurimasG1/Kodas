@@ -1,11 +1,11 @@
 .button-64 {
   align-items: center;
-  background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
   border: 0;
   border-radius: 8px;
   box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #ffffff;
   display: flex;
   font-family: Phantomsans, sans-serif;
   font-size: 20px;
@@ -16,7 +16,7 @@
   padding: 3px;
   text-decoration: none;
   -moz-user-select: none;
-       user-select: none;
+  user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   white-space: nowrap;
@@ -59,18 +59,19 @@
 
 button {
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   backface-visibility: hidden;
   background-color: gray;
   border-radius: 8px;
   border-style: none;
   box-shadow: rgba(128, 128, 128, 0.15) 0 4px 9px;
   box-sizing: border-box;
-  color: #FDFFFC;
+  color: #fdfffc;
   cursor: pointer;
   display: inline-block;
-  font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-family: Inter, -apple-system, system-ui, 'Segoe UI', Helvetica, Arial,
+    sans-serif;
   font-size: 16px;
   font-weight: 600;
   letter-spacing: normal;
@@ -84,7 +85,7 @@ button {
   transform: translate3d(0, 0, 0);
   transition: all 0.3s;
   -moz-user-select: none;
-       user-select: none;
+  user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: top;
@@ -113,7 +114,7 @@ button.black:hover {
   box-shadow: rgba(0, 0, 0, 0.2) 0 6px 12px;
 }
 button.red {
-  background-color: #FF0022;
+  background-color: #ff0022;
   box-shadow: rgba(255, 0, 34, 0.15) 0 4px 9px;
 }
 button.red:hover {
@@ -121,7 +122,7 @@ button.red:hover {
   box-shadow: rgba(153, 0, 20, 0.2) 0 6px 12px;
 }
 button.green {
-  background-color: #41EAD4;
+  background-color: #41ead4;
   box-shadow: rgba(65, 234, 212, 0.15) 0 4px 9px;
 }
 button.green:hover {
@@ -129,7 +130,7 @@ button.green:hover {
   box-shadow: rgba(20, 177, 157, 0.2) 0 6px 12px;
 }
 button.white {
-  background-color: #FDFFFC;
+  background-color: #fdfffc;
   box-shadow: rgba(253, 255, 252, 0.15) 0 4px 9px;
   color: #011627;
 }
@@ -138,10 +139,10 @@ button.white:hover {
   box-shadow: rgba(185, 255, 150, 0.2) 0 6px 12px;
 }
 button.yellow {
-  background-color: #FF9F1C;
+  background-color: #ff9f1c;
   box-shadow: rgba(255, 159, 28, 0.15) 0 4px 9px;
 }
 button.yellow:hover {
   background-color: #b56800;
   box-shadow: rgba(181, 104, 0, 0.2) 0 6px 12px;
-}/*# sourceMappingURL=Buttons.css.map */
+} /*# sourceMappingURL=Buttons.css.map */

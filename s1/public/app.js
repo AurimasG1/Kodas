@@ -1,4 +1,5 @@
-console.log('---------------------------');
+console.log('-------------------');
+
 document.querySelector('button').addEventListener('click', _ => {
   const data = {};
   document.querySelectorAll('input').forEach(input => {

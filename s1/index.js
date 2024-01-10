@@ -1,29 +1,31 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const fs = require('node:fs');
 const app = express();
 const port = 3001;
-const fs = require('node:fs');
-const bodyParser = require('body-parser');
 
 // app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(express.static('public'));
 
 app.use(bodyParser.json());
+
 app.get('/', (req, res) => {
-  res.send('<h1>Labas, Meškėnai!</h1>');
+  console.log('Buvo užklausta /');
+  res.send('Labas Bebrai!');
 });
 
-app.get('/m', (req, res) => {
-  console.log('Color', req.query.color);
+app.get('/m/44', (req, res) => {
+  console.log('Color:', req.query.color);
   res.send(
     `<h1 style="color:${req.query.color}; font-size:${req.query.size}px">Labas, Meškėnai!</h1>`
   );
 });
 
-app.get('/bebrenas', (req, res) => {
-  console.log('Color', req.params.color);
+app.get('/bebrenas/:color', (req, res) => {
+  console.log('Color:', req.params.color);
   res.send(
-    `<h1 style="color:${req.params.color}; font-size:${req.query.size}px">Labas, Meškėnai!</h1>`
+    `<h1 style="color:${req.params.color}; font-size:${req.query.size}px">Labas, Bebrėnai!</h1>`
   );
 });
 
@@ -42,7 +44,8 @@ app.post('/form', (req, res) => {
 });
 
 app.get('/form-js', (req, res) => {
-  const html = fs.readFileSync('./htmls/jsform.html', 'utf8');
+  let html = fs.readFileSync('./htmls/jsform.html', 'utf8');
+
   let data = fs.readFileSync('./data/data.json', 'utf8');
   data = JSON.parse(data);
   let htmlData = '';
