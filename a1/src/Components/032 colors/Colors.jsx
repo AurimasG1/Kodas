@@ -3,7 +3,7 @@ import './App.scss';
 import './Buttons.scss';
 import './form.scss';
 import Create from './Components/032 colors/Create';
-import {useCallback, useEffect, useState} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   lsDestroy,
   lsRead,
@@ -14,7 +14,7 @@ import Read from './Components/032 colors/Read';
 import Delete from './Components/032 colors/Delete';
 import Edit from './Components/032 colors/Edit';
 import Messages from './Components/032 colors/Messages';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
 export default function App() {
@@ -29,7 +29,7 @@ export default function App() {
 
   const addMessage = useCallback((type, text) => {
     const id = uuidv4();
-    setMessages(prevMessages => [{id, type, text}, ...prevMessages]);
+    setMessages(prevMessages => [{ id, type, text }, ...prevMessages]);
     setTimeout(_ => {
       setMessages(prevMessages => prevMessages.filter(m => m.id !== id));
     }, 3000);
@@ -45,14 +45,14 @@ export default function App() {
         return;
       }
       const id = lsStore(KEY, createData);
-      setColors(prevColors => [...prevColors, {...createData, id}]);
+      setColors(prevColors => [...prevColors, { ...createData, id }]);
       // get name for color
       const color = createData.color.replace('#', '');
       axios
         .get(`https://www.thecolorapi.com/id?hex=${color}`)
         .then(res => {
           const name = res.data.name.value;
-          const newData = {...createData, id, name};
+          const newData = { ...createData, id, name };
           lsUpdate(KEY, id, newData);
           setColors(prevColors =>
             prevColors.map(color => (color.id === id ? newData : color))
@@ -89,7 +89,7 @@ export default function App() {
       const id = updateData.id;
       lsUpdate(KEY, id, updateData);
       setColors(prevColors =>
-        prevColors.map(color => (color.id === id ? {...updateData, id} : color))
+        prevColors.map(color => (color.id === id ? { ...updateData, id } : color))
       );
       setEditData(null);
       addMessage('success', 'color updated succesfully');
@@ -98,7 +98,7 @@ export default function App() {
         .get(`https://www.thecolorapi.com/id?hex=${color}`)
         .then(res => {
           const name = res.data.name.value;
-          const newData = {...updateData, id, name};
+          const newData = { ...updateData, id, name };
           lsUpdate(KEY, id, newData);
           setColors(prevColors =>
             prevColors.map(color => (color.id === id ? newData : color))
