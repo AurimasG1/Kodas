@@ -2,173 +2,200 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
+	margin: 0;
 }
 
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .sq-bin {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 70%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 70%;
 }
 
 .sq {
-  width: 20px;
-  height: 20px;
+	width: 20px;
+	height: 20px;
 }
 
 .squares {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  width: 70%;
-  gap: 10px;
-  margin: 20px;
-  .square {
-    width: 150px;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 16px;
-    background-color: #282c34;
-    border: 1px solid white;
-    border-radius: 10px;
-    &__animal {
-      letter-spacing: 2px;
-    }
-    &.spin {
-      animation: spin 10s linear infinite;
-    }
-    &.pulse {
-      animation: pulse 1s linear infinite;
-      animation-delay: 0.5s;
-    }
-    &.pointer {
-      cursor: pointer;
-      user-select: none;
-    }
-    &.big {
-      width: 300px;
-      height: 300px;
-    }
-  }
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	width: 70%;
+	gap: 10px;
+	margin: 20px;
+	.square {
+		width: 150px;
+		height: 150px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		font-size: 16px;
+		background-color: #282c34;
+		border: 1px solid white;
+		border-radius: 10px;
+		&__animal {
+			letter-spacing: 2px;
+		}
+		&.spin {
+			animation: spin 10s linear infinite;
+		}
+		&.pulse {
+			animation: pulse 1s linear infinite;
+			animation-delay: 0.5s;
+		}
+		&.pointer {
+			cursor: pointer;
+			user-select: none;
+		}
+		&.big {
+			width: 300px;
+			height: 300px;
+		}
+	}
 }
 
 @keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+	}
 }
 
 @keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 .dogs {
-  display: flex;
-  gap: 10px;
-  margin: 30px;
-  .dog {
-    width: 100px;
-    height: 100px;
-    border: 1px solid white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 16px;
-  }
-  .circle {
-    border-radius: 50%;
-  }
-  .square {
-    border: 1px solid gray;
-  }
+	display: flex;
+	gap: 10px;
+	margin: 30px;
+	.dog {
+		width: 100px;
+		height: 100px;
+		border: 1px solid white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		font-size: 16px;
+	}
+	.circle {
+		border-radius: 50%;
+	}
+	.square {
+		border: 1px solid gray;
+	}
 }
 
 .color-circle {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
+	width: 300px;
+	height: 300px;
+	border-radius: 50%;
 }
 
 .modal {
-  display: block;
-  background-color: #282c3477;
+	display: block;
+	background-color: #282c3477;
 }
 .showLine {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  .buttons {
-    justify-content: flex-end;
-    width: 200px;
-  }
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	.buttons {
+		justify-content: flex-end;
+		width: 200px;
+	}
 }
 .messages {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 300px;
-  position: fixed;
-  right: 10px;
-  top: 50px;
-  .alert {
-    width: 100%;
-  }
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 300px;
+	position: fixed;
+	right: 10px;
+	top: 50px;
+	.alert {
+		width: 100%;
+	}
 }
 .color-name {
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: monospace;
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: monospace;
 }
 .square {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .big-bin {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  min-width: 300px;
-  min-height: 300px;
-  margin: 30px;
-  border: 2px solid gray;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	min-width: 300px;
+	min-height: 300px;
+	margin: 30px;
+	border: 2px solid gray;
+}
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-content {
+	font-size: 2rem;
+	width: 25%;
+	background: #fff;
+	padding: 1.2em;
+	border-radius: 5px;
+	text-align: center;
+	align-items: center;
+}
+
+.modal-content button {
+	width: 30%;
+	margin-top: 10px;
+	cursor: pointer;
 }
