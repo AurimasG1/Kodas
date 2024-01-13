@@ -11,40 +11,65 @@ app.use(express.static('public'));
 
 app.use(bodyParser.json());
 
-app.get('/animals', (req, res) => {
-	const data = JSON.parse(fs.readFileSync('./data/data.json', 'utf8'));
+app.get('/saskaitos', (req, res) => {
+	const data = JSON.parse(fs.readFileSync('./data/data2.json', 'utf8'));
 	// res.status(400).end();
 	res.json(data);
 });
 
-app.post('/animals', (req, res) => {
-	const data = JSON.parse(fs.readFileSync('./data/data.json', 'utf8'));
-	const newAnimal = req.body;
-	newAnimal.id = uuidv4();
-	data.push(newAnimal);
-	fs.writeFileSync('./data/data.json', JSON.stringify(data));
-	res.json({ id: newAnimal.id, message: 'Animal at home now', type: 'success' });
+app.post('/saskaitos', (req, res) => {
+	const data = JSON.parse(fs.readFileSync('./data/data2.json', 'utf8'));
+	const naujaSaskaita = req.body;
+	naujaSaskaita.id = uuidv4();
+	data.push(naujaSaskaita);
+	fs.writeFileSync('./data/data2.json', JSON.stringify(data));
+	res.json({
+		id: naujaSaskaita.id,
+		message: 'Nauja sąskaita sukurta sėkmingai',
+		type: 'success',
+	});
 });
 
-app.delete('/animals/:id', (req, res) => {
-	let data = JSON.parse(fs.readFileSync('./data/data.json', 'utf8'));
+app.delete('/saskaitos/:id', (req, res) => {
+	let data = JSON.parse(fs.readFileSync('./data/data2.json', 'utf8'));
 	const id = req.params.id;
-	data = data.filter(animal => animal.id !== id);
-	fs.writeFileSync('./data/data.json', JSON.stringify(data));
+	data = data.filter(saskaita => saskaita.id !== id);
+	fs.writeFileSync('./data/data2.json', JSON.stringify(data));
 	// respond 204 No Content
 	// res.status(204).end();
-	res.json({ message: 'Animal is free now', type: 'info' });
+	res.json({ message: 'Saskaita sunaikinta', type: 'info' });
 });
 
-app.put('/animals/:id', (req, res) => {
-	let data = JSON.parse(fs.readFileSync('./data/data.json', 'utf8'));
+app.put('/saskaitos/:id', (req, res) => {
+	let data = JSON.parse(fs.readFileSync('./data/data2.json', 'utf8'));
 	const id = req.params.id;
-	const updatedAnimal = req.body;
-	data = data.map(animal => (animal.id === id ? { ...updatedAnimal, id } : animal));
-	fs.writeFileSync('./data/data.json', JSON.stringify(data));
-	res.json({ message: 'Animal is different now', type: 'info' });
+	const atnaujintaSaskaita = req.body;
+	data = data.map(saskaita =>
+		saskaita.id === id ? { ...atnaujintaSaskaita, id } : saskaita
+	);
+	fs.writeFileSync('./data/data2.json', JSON.stringify(data));
+	res.json({ message: 'Saskaita is different now', type: 'info' });
+});
+
+app.put('/saskaitos/sort/:sortType', (req, res) => {
+	let data = JSON.parse(fs.readFileSync('./data/data2.json', 'utf8'));
+	const sortType = req.params.sortType;
+
+	// Sort data based on the specified sort type (pavarde or vardas)
+	if (sortType === 'pavarde') {
+		data.sort((a, b) => a.pavarde.localeCompare(b.pavarde));
+	} else if (sortType === 'vardas') {
+		data.sort((a, b) => a.vardas.localeCompare(b.vardas));
+	} else {
+		// Handle other sorting types if needed
+		res.status(400).json({ message: 'Invalid sort type', type: 'error' });
+		return;
+	}
+
+	fs.writeFileSync('./data/data2.json', JSON.stringify(data));
+	res.json({ message: 'Data sorted successfully', type: 'info' });
 });
 
 app.listen(port, () => {
-	console.log(`Žvėrys klauso ${port} porto.`);
+	console.log(`Saskaitos klauso ${port} porto.`);
 });
