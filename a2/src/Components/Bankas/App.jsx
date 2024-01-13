@@ -2,20 +2,69 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import './buttons.scss';
 import './form.scss';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from './Components/Bankas/Modal';
-import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios'
+
+const URL = 'http://localhost:3001/saskaitos'
 
 export default function App() {
 	const [vardas, setVardas] = useState('');
 	const [pavarde, setPavarde] = useState('');
-	const [saskaitos, setSaskaitos] = useState([]);
-	const [editingIndex, setEditingIndex] = useState(null);
-	const [suma, setSuma] = useState({});
+	const [suma, setSuma] = useState(0);
+	const [saskaitos, setSaskaitos] = useState(null);
+	const [storeSaskaitas, setStoreSaskaitas] = useState(null)
+	const [sunaikintiSaskaitas, setSunaikintiSaskaitas] = useState(null)
+	const [atnaujintiSaskaitas, setAtnaujintiSaskaitas] = useState(null)
 	const [modalMessage, setModalMessage] = useState('');
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const inputRef = useRef(null);
-	const [isInputFocused, setIsInputFocused] = useState(false);
+	const [sortingParam, setSortingParam] = useState('');
+
+	useEffect(_ => {
+		axios.get(URL)
+			.then(res => setSaskaitos(res.data))
+			.catch(err => console.log(err))
+	}, [])
+
+	useEffect(_ => {
+		if (null !== storeSaskaitas) {
+			axios.post(URL, storeSaskaitas)
+				.then(res => {
+					setSaskaitos([{
+						vardas,
+						pavarde,
+						suma: 0,
+						id: res.data.id
+					}, ...saskaitos])
+					setVardas('')
+					setPavarde('')
+				})
+				.catch(err => console.log(err))
+		}
+	}, [storeSaskaitas])
+
+	useEffect(_ => {
+		if (null !== sunaikintiSaskaitas) {
+			axios.delete(`${URL}/${sunaikintiSaskaitas.id}`)
+				.then(res => {
+					setSaskaitos(saskaitos.filter(saskaita => saskaita.id !== sunaikintiSaskaitas.id))
+					openModal('Sąskaita ištrinta sėkmingai')
+				})
+				.catch(err => console.log(err))
+		}
+	}, [sunaikintiSaskaitas])
+
+	useEffect(_ => {
+		if (null !== atnaujintiSaskaitas) {
+			axios.put(`${URL}/${atnaujintiSaskaitas.id}`, atnaujintiSaskaitas)
+				.then(_ => {
+					setSaskaitos(saskaitos.map(saskaita => saskaita.id === atnaujintiSaskaitas.id ? {
+						...saskaita, suma: atnaujintiSaskaitas.suma
+					} : saskaita))
+				})
+				.catch(err => console.log(err))
+		}
+	}, [atnaujintiSaskaitas])
 
 	const openModal = (message) => {
 		setModalMessage(message);
@@ -27,83 +76,78 @@ export default function App() {
 		setIsModalOpen(false);
 	};
 
-	const sukurtiNaujaSaskaita = () => {
-		const id = uuidv4();
-		let naujaSaskaita;
+	const pateiktiSaskaita = _ => {
 		if (!vardas || !pavarde) {
 			return;
 		} else {
-			naujaSaskaita = {
+			setStoreSaskaitas({
 				vardas,
 				pavarde,
 				suma: 0,
-				id: id,
-			};
-			setSaskaitos([...saskaitos, naujaSaskaita]);
-			setVardas('');
-			setPavarde('');
+			})
 			openModal('Nauja sąskaita sukurta sėkmingai');
 		}
-	};
+	}
 
-	useEffect(() => {
-		const issaugotosSaskaitos = JSON.parse(localStorage.getItem('saskaitos')) || [];
-		setSaskaitos(issaugotosSaskaitos);
-	}, []);
+	const PridetiLesas = (saskaita) => {
+		const currentSuma = saskaita.suma || 0
+		const inputValue = parseFloat(suma[saskaita.id]) || 0
 
-	useEffect(() => {
-		localStorage.setItem('saskaitos', JSON.stringify(saskaitos));
-	}, [saskaitos]);
-
-	const pridetiLesas = (id) => {
-		const index = saskaitos.findIndex((saskaita) => saskaita.id === id);
-		const naujasSaskaitosSararas = [...saskaitos];
-		if (0 === suma[id]) {
+		if (inputValue === 0) {
 			openModal('Pervedama suma turi būti didesnė nei 0 :)');
-		} else {
-			naujasSaskaitosSararas[index].suma += suma[id];
-			setSaskaitos(naujasSaskaitosSararas);
+		}
+		else {
+			const atnaujintaSaskaita = {
+				...saskaita,
+				suma: currentSuma + inputValue
+			}
+			setAtnaujintiSaskaitas(atnaujintaSaskaita)
 			openModal('Lėšos pridėtos sėkmingai');
-			setSuma((prevSuma) => ({ ...prevSuma, [id]: 0 }));
-			setEditingIndex(null); // Reset editing index
-			inputRef.current.blur();
 		}
-	};
+	}
 
-	const nuskaiciuotiLesas = (id) => {
-		const index = saskaitos.findIndex((saskaita) => saskaita.id === id);
-		const naujasSaskaitosSarasas = [...saskaitos];
-		if (0 === suma[id]) {
-			openModal('Pervedama suma turi būti didesnė nei 0 :)');
-		} else if (naujasSaskaitosSarasas[index].suma >= suma[id]) {
-			naujasSaskaitosSarasas[index].suma -= suma[id];
-			setSaskaitos(naujasSaskaitosSarasas);
+	const NuskaiciuotiLesas = (saskaita) => {
+		const currentSuma = saskaita.suma || 0
+		const inputValue = parseFloat(suma[saskaita.id]) || 0
+		if (inputValue === 0) {
+			openModal('Atimama suma turi būti didesnė nei 0 :)');
+		}
+		else if (currentSuma >= inputValue) {
+
+			const atnaujintaSaskaita = {
+				...saskaita,
+				suma: currentSuma - inputValue
+			}
+			setAtnaujintiSaskaitas(atnaujintaSaskaita)
 			openModal('Lėšos nuskaičiuotos sėkmingai!');
-			setSuma((prevSuma) => ({ ...prevSuma, [id]: 0 }));
-			setEditingIndex(null); // Reset editing index
-			inputRef.current.blur();
-		} else {
-			openModal('Nepakanka lėšų sąskaitoje!');
 		}
-	};
-
-	const istrintiSaskaita = id => {
-		setSaskaitos((prevSaskaitos) => prevSaskaitos.filter((saskaita) => saskaita.id !== id));
-		openModal('Sąskaita ištrinta sėkmingai')
-	};
-
-
-	const rusiuotiPagalPavarde = _ => {
-		const naujasSaskaitosSarasas = [...saskaitos]
-		naujasSaskaitosSarasas.sort((a, b) => (a.pavarde.localeCompare(b.pavarde)))
-		setSaskaitos(naujasSaskaitosSarasas)
+		else {
+			openModal('Sąskaitoje yra mažiau nei bandote atimti');
+		}
 	}
 
 
+	const rusiuotiPagalPavarde = _ => {
+		setSortingParam('pavarde');
+		sortSaskaitos();
+	}
+
 	const rusiuotiPagalVarda = _ => {
-		const naujasSaskaitosSarasas2 = [...saskaitos]
-		naujasSaskaitosSarasas2.sort((a, b) => (a.vardas.localeCompare(b.vardas)))
-		setSaskaitos(naujasSaskaitosSarasas2)
+		setSortingParam('vardas');
+		sortSaskaitos();
+	}
+
+	const sortSaskaitos = _ => {
+		const sortedSaskaitos = [...saskaitos];
+		sortedSaskaitos.sort((a, b) => {
+			if (sortingParam === 'vardas') {
+				return a.vardas.localeCompare(b.vardas);
+			} else if (sortingParam === 'pavarde') {
+				return a.pavarde.localeCompare(b.pavarde);
+			}
+			return 0;
+		});
+		setSaskaitos(sortedSaskaitos);
 	}
 
 	return (
@@ -116,6 +160,7 @@ export default function App() {
 						type="text"
 						name="vardas"
 						value={vardas}
+						placeholder='Įveskite vardą'
 						onChange={(e) => setVardas(e.target.value)}
 					/>
 					Vardas:
@@ -126,12 +171,13 @@ export default function App() {
 						type="text"
 						name="pavarde"
 						value={pavarde}
+						placeholder='Įveskite pavardę'
 						onChange={(e) => setPavarde(e.target.value)}
 					/>
 					Pavardė:
 				</label>
 
-				<button onClick={sukurtiNaujaSaskaita}>Sukurti Naują Sąskaitą</button>
+				<button onClick={pateiktiSaskaita}>Sukurti Naują Sąskaitą</button>
 			</div>
 			<table className="table table-sm table-dark">
 				<thead>
@@ -145,59 +191,32 @@ export default function App() {
 					</tr>
 				</thead>
 				<tbody>
-					{saskaitos.map((saskaita, i) => (
+					{saskaitos && saskaitos.length !== 0 && saskaitos.map((saskaita, i) => (
 						<tr key={saskaita.id}>
 							<td>{i + 1}</td>
 							<td>{saskaita.vardas}</td>
 							<td>{saskaita.pavarde}</td>
 							<td>{saskaita.suma}</td>
 							<td>
-								<button onClick={() => istrintiSaskaita(saskaita.id)}>Ištrinti</button>
+								<button onClick={_ => setSunaikintiSaskaitas(saskaita)}>Sunaikinti</button>
 							</td>
 							<td>
-								<input
-									name="suma"
-									type="number"
-									value={editingIndex === saskaita.id ? suma[saskaita.id] : ''}
-									onChange={(e) => {
-										const value = e.target.value === '' ? '' : Math.max(0, parseInt(e.target.value, 10));
-										if (isInputFocused && !isNaN(value)) {
-											setSuma((prevSuma) => ({ ...prevSuma, [saskaita.id]: value }));
-										}
-									}}
-									ref={inputRef}
-									onFocus={_ => {
-										setEditingIndex(saskaita.id)
-										setIsInputFocused(true)
-									}}
-									onBlur={_ => {
-										setEditingIndex(null)
-										setIsInputFocused(false)
-									}}
-								></input>
+								<input name='suma2' type='number' value={suma[saskaita.id] || 0} onChange={e => setSuma({ ...suma, [saskaita.id]: Math.max(0, parseInt(e.target.value, 10)) })} />
 								<button onClick={_ => {
-									const inputFieldValue = suma[saskaita.id];
-									if (inputFieldValue !== '' && !isNaN(inputFieldValue)) {
-										pridetiLesas(saskaita.id);
-										setSuma((prevSuma) => ({ ...prevSuma, [saskaita.id]: '' }));
-									} else {
-										openModal('Įveskite tinkamą skaičių į "Sumos Keitimas" laukelį.');
-									}
-								}}>Pridėti lėšų</button>
+									PridetiLesas(saskaita)
+									setSuma((prevSuma) => ({ ...prevSuma, [saskaita.id]: '' }))
+								}}>Pridėti</button>
 								<button onClick={_ => {
-									const inputFieldValue = suma[saskaita.id];
-									if (inputFieldValue !== '' && !isNaN(inputFieldValue)) {
-										nuskaiciuotiLesas(saskaita.id);
-										setSuma((prevSuma) => ({ ...prevSuma, [saskaita.id]: '' }));
-									} else {
-										openModal('Įveskite tinkamą skaičių į "Sumos Keitimas" laukelį.');
-									}
-								}}>Nuskaičiuoti lėšas</button>
+									NuskaiciuotiLesas(saskaita)
+									setSuma((prevSuma) => ({ ...prevSuma, [saskaita.id]: '' }))
+								}}>Atimti</button>
 							</td>
 						</tr>
 					))}
 				</tbody>
 			</table>
+			{saskaitos && !saskaitos.length && <h4>neradau</h4>}
+			{!saskaitos && <h4>nera</h4>}
 			<button onClick={_ => rusiuotiPagalVarda()}>Pagal vardą</button>
 			<button onClick={_ => rusiuotiPagalPavarde()}>Pagal pavardę</button>
 			{isModalOpen && <Modal message={modalMessage} onClose={closeModal} />}
