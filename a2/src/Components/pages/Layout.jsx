@@ -2,9 +2,11 @@ import About from "./About"
 import Animals from "./Animals"
 import Contact from "./Contact"
 import Home from "./Home"
-import { useEffect, useState } from "react"
+import { useEffect, useState, createContext } from "react"
 import Loading from "./Loading"
 import Page404 from "./Page404"
+
+export const ParameterContext = createContext();
 
 export default function Layout() {
 
@@ -42,10 +44,10 @@ export default function Layout() {
 
 
     return (
-        <>
+        <ParameterContext.Provider value={{ params, path }}>
             {
                 routes.find(route => route.path === path)?.component || <Page404 />
             }
-        </>
+        </ParameterContext.Provider>
     )
 }
