@@ -263,3 +263,10 @@ main {
 	margin-top: 10px;
 	cursor: pointer;
 }
+.forms {
+	display: flex;
+	flex-direction: row;
+	.form {
+		width: 33%;
+	}
+}
