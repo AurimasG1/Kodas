@@ -1,0 +1,134 @@
+@font-face {
+	font-family: 'gluk';
+	src: url(./Nestocopper42-1GVw2.ttf);
+}
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+.section-1 {
+	background-color: #333;
+	color: #fff;
+	height: 100vh;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 3rem;
+}
+
+.card {
+	height: 30rem;
+	width: 20rem;
+	border-radius: 5%;
+	perspective: 120rem;
+
+	position: relative;
+}
+
+.card-side {
+	height: 30rem;
+	width: 20rem;
+	border-radius: 5%;
+	box-shadow: 0 0 10px #222;
+
+	transition: all 0.8s ease;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	backface-visibility: hidden;
+
+	/* content style */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: gluk;
+	font-size: 3.5rem;
+}
+
+.card-front {
+	background-color: crimson;
+}
+
+.card-back {
+	background-color: black;
+	transform: rotateY(180deg);
+}
+
+.card:hover .card-front {
+	transform: rotateY(-180deg);
+}
+.card:hover .card-back {
+	transform: rotateY(0);
+}
+
+/* section 2 */
+.section-2 {
+	height: 100vh;
+	background-image: url(./wallhaven-vgk6m8_1920x1080.png);
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.link:link,
+.link:visited {
+	font-family: gluk;
+	font-size: 3rem;
+	text-decoration: none;
+	color: black;
+	text-shadow: 0 0 1px black;
+	padding: 1em 2em;
+
+	background-color: rgba(255, 255, 255, 0.25);
+	backdrop-filter: blur(6px);
+	border-radius: 20rem;
+	backface-visibility: hidden;
+
+	position: relative;
+
+	transition: all 0.7s;
+}
+
+.link::after {
+	background-color: rgba(255, 255, 255, 0.5);
+	content: '';
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	border-radius: 20rem;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	transition: all 0.5s ease-out;
+}
+
+.link:hover {
+	transform: translateY(-3px) scale(1.2);
+	box-shadow: 0 10px 20px black;
+}
+.link:active {
+	transform: translateY(-1px) scale(1);
+	box-shadow: 0 5px 10px black;
+}
+
+.link:hover::after {
+	transform: scaleX(1.6) scaleY(1.8);
+	opacity: 0;
+}

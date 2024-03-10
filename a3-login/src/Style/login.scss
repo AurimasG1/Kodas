@@ -1,0 +1,32 @@
+.login-page {
+	background-color: #282c34;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: $black;
+	.box {
+		width: 400px;
+		padding: 30px 60px;
+		color: $white;
+		text-align: center;
+		h1 {
+			color: grey;
+			font-size: 30px;
+			text-align: center;
+			margin: 0;
+		}
+		.response {
+			color: red;
+			font-size: 14px;
+			text-align: center;
+			line-height: 20px;
+			padding: 5px 0 10px 0;
+			height: 20px;
+		}
+		.form {
+			color: $black;
+		}
+	}
+}

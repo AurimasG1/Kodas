@@ -18,14 +18,128 @@ app.use(bodyParser.json());
 connection.connect();
 
 app.get('/trees', (req, res) => {
-	const sql = `
-    SELECT id, name, height, type
-    FROM trees
-    -- WHERE type = 'lapuotis' OR height > 10
-    -- ORDER BY type ASC, height DESC
-    -- LIMIT 4, 4
-    `;
+	const sort = req.query.sort || '';
+	let sql;
+	if (sort === 'height_asc') {
+		sql = `
+		SELECT *
+		FROM trees
+		ORDER BY height ASC
+		`;
+	} else if (sort === 'height_desc') {
+		sql = `
+		SELECT *
+		FROM trees
+		ORDER BY height DESC
+		`;
+	} else if (sort === 'name_asc') {
+		sql = `
+		SELECT *
+		FROM trees
+		ORDER BY name ASC
+		`;
+	} else if (sort === 'name_desc') {
+		sql = `
+		SELECT *
+		FROM trees
+		ORDER BY name DESC
+		`;
+	} else {
+		sql = `
+		SELECT *
+		FROM trees
+		`;
+	}
 
+	// const sql = `
+	// SELECT id, name, height, type
+	// FROM trees
+	// -- WHERE type = 'lapuotis' OR height > 10
+	// -- ORDER BY type ASC, height DESC
+	// -- LIMIT 4, 4
+	// `;
+
+	connection.query(sql, (err, rows) => {
+		if (err) throw err;
+		res.json(rows);
+	});
+});
+
+app.post('/trees', (req, res) => {
+	const sql = `
+	INSERT INTO trees (name, height, type)
+	VALUE (?, ?, ?)
+	`;
+	const { name, height, type } = req.body;
+	connection.query(sql, [name, height, type], (err, result) => {
+		if (err) throw err;
+		res.json({ id: result.insertId });
+	});
+});
+
+app.delete('/trees/:id', (req, res) => {
+	const sql = `
+	DELETE FROM trees
+	WHERE id = ?
+	`;
+	connection.query(sql, [req.params.id], (err, result) => {
+		if (err) throw err;
+		res.json({ status: 'ok' });
+	});
+});
+
+app.put('/trees/:id', (req, res) => {
+	const sql = `
+	UPDATE trees
+	SET height = ?
+	WHERE id = ?
+	`;
+	const { height } = req.body;
+	connection.query(sql, [height, req.params.id], (err, result) => {
+		if (err) throw err;
+		res.json({ status: 'ok' });
+	});
+});
+
+app.get('/trees/stats', (req, res) => {
+	const sql = `
+	SELECT COUNT(*) AS total, AVG(height) AS average
+	FROM trees
+	`;
+	connection.query(sql, (err, rows) => {
+		if (err) throw err;
+		res.json(rows[0]);
+	});
+});
+
+app.get('/clients', (req, res) => {
+	const type = req.query.type || '';
+	let sql;
+	if (type === 'inner') {
+		sql = `
+		SELECT c.id, p.id AS pid, name, number, client_id
+		FROM clients AS c
+		INNER JOIN phones AS p
+		ON c.id = p.client_id
+		ORDER BY c.name ASC
+		`;
+	} else if (type === 'right') {
+		sql = `
+		SELECT c.id, p.id AS pid, name, number, client_id
+		FROM clients AS c
+		RIGHT JOIN phones AS p
+		ON c.id = p.client_id
+		`;
+	} else if (type === 'left') {
+		sql = `
+		SELECT c.id, p.id AS pid, name, number, client_id
+		FROM clients AS c
+		LEFT JOIN phones AS p
+		ON c.id = p.client_id
+		`;
+	} else {
+		// err
+	}
 	connection.query(sql, (err, rows) => {
 		if (err) throw err;
 		res.json(rows);
