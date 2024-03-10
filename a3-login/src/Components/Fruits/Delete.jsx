@@ -7,8 +7,7 @@ export default function Delete() {
 
     const [fruit, setFruit] = useState(null)
     const { fruits, setDeleteFruit, setFruits } = useContext(Fruits);
-
-    const params = useContext(Router);
+    const { params } = useContext(Router);
 
 
     useEffect(_ => {
@@ -24,6 +23,14 @@ export default function Delete() {
         }
     }, [fruits, params]);
 
+
+    const doDelete = _ => {
+        const fruitId = fruit.id;
+        setFruits(f => f.map(fruit => fruit.id === fruitId ? { ...fruit, temp: true } : fruit));
+        setDeleteFruit(fruitId);
+        window.location.href = '#fruits'
+    };
+
     if (!fruits) return (
         <div>
             <TopNav />
@@ -38,14 +45,6 @@ export default function Delete() {
 
         </div>
     );
-
-    const doDelete = _ => {
-        const fruitId = fruit.id;
-        setFruits(f => f.map(fruit => fruit.id === fruitId ? { ...fruit, temp: true } : fruit));
-        setDeleteFruit(fruitId);
-        window.location.href = '#fruits'
-    };
-
     return (
 
         <div>

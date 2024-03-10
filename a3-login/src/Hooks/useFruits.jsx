@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from 'axios';
 import { SERVER_URL } from "../Constants/main";
 import { Auth } from "../Contexts/Auth";
+import { Router } from "../Contexts/Router";
 
 
 export default function useFruits() {
@@ -12,6 +13,7 @@ export default function useFruits() {
     const [deleteFruit, setDeleteFruit] = useState(null);
 
     const { user, logout } = useContext(Auth);
+    const { show401Page } = useContext(Router);
 
     useEffect(_ => {
 
@@ -25,11 +27,15 @@ export default function useFruits() {
                 if (err.response) {
                     if (err.response.status === 401) {
                         logout();
+                        if (err.response.data.status === 'login') {
+                            logout();
+                        }
+                        show401Page();
                     }
                 }
                 console.log(err);
             });
-    }, [user, logout]);
+    }, []);
 
 
     useEffect(_ => {

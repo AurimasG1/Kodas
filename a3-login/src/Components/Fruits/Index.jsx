@@ -9,13 +9,12 @@ import Delete from "./Delete";
 
 export default function Index() {
 
-    const params = useContext(Router);
+    const { params } = useContext(Router);
 
     let returnComponent = <Page404 />
 
     if (params.length === 0) {
-        returnComponent = <List />;
-
+        returnComponent = <List />
     } else if (params.length === 1 && params[0] === 'create') {
         returnComponent = <Create />
     } else if (params.length === 2 && params[0] === 'edit') {

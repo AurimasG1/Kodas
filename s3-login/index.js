@@ -17,15 +17,21 @@ const port = 3001;
 app.use(cors());
 app.use(express.static('public'));
 app.use(bodyParser.json());
-
 connection.connect();
-let user = {};
 
-const checkUserIsLogged = (user, res) => {
-	if (user) {
+const checkUserisAuthorized = (user, res, roles) => {
+	if (user && roles.includes(user.role)) {
 		return true;
+	} else if (user) {
+		res.status(401).json({
+			message: 'Not authorized',
+			status: 'role',
+		});
 	} else {
-		res.status(401).json({ message: 'Not logged in' });
+		res.status(401).json({
+			message: 'Not logged in',
+			status: 'login',
+		});
 	}
 };
 
@@ -65,7 +71,7 @@ const doAuth = (req, res, next) => {
 app.use(doAuth);
 
 app.get('/fruits', (req, res) => {
-	if (!checkUserIsLogged(req.user, res)) {
+	if (!checkUserisAuthorized(req.user, res, ['admin', 'user'])) {
 		return;
 	}
 	const sql = 'SELECT * FROM fruits';

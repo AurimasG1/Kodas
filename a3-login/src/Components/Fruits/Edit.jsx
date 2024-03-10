@@ -10,7 +10,7 @@ export default function Edit() {
     const [form, setForm] = useState('');
     const [fruit, setFruit] = useState(null)
     const { fruits, setEditFruit, setFruits } = useContext(Fruits);
-    const params = useContext(Router);
+    const { params } = useContext(Router);
 
 
     useEffect(_ => {
@@ -32,7 +32,7 @@ export default function Edit() {
         }
         setName(fruit.name);
         setColor(fruit.color);
-        setForm(fruit.form);
+        setForm(fruit.form.toLowerCase());
 
     }, [fruit, setName, setColor, setForm]);
 

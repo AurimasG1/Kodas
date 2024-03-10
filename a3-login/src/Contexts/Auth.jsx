@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { AFTER_LOGIN_URL, SITE_URL } from "../Constants/main";
 
 export const Auth = createContext();
 
