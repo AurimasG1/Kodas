@@ -6,26 +6,36 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(_ => {
         const token = window.localStorage.getItem('token');
         const user = window.localStorage.getItem('user');
+        const role = window.localStorage.getItem('role');
+        const id = window.localStorage.getItem('id');
         return token ? {
             token,
-            user
+            user,
+            role,
+            id
         } : null;
     });
 
     const logout = _ => {
         window.localStorage.removeItem('token');
         window.localStorage.removeItem('user');
-        window.location.href = `#login`;
+        window.localStorage.removeItem('role');
+        window.localStorage.removeItem('id');
         setUser(null);
+        window.location.href = `#login`;
 
     }
 
-    const login = (token, user) => {
+    const login = (token, user, role, id) => {
         window.localStorage.setItem('token', token);
         window.localStorage.setItem('user', user);
+        window.localStorage.setItem('role', role);
+        window.localStorage.setItem('id', id);
         setUser({
             token,
-            user
+            user,
+            role,
+            id
         });
     }
 

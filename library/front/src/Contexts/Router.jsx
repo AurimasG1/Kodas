@@ -1,0 +1,56 @@
+import { createContext, useEffect, useState } from "react";
+import Page404 from "../Pages/Page404.jsx";
+import AuthorIndex from '../Pages/Authors/Index.jsx'
+import BookIndex from '../Pages/Books/Index.jsx'
+import HeroIndex from '../Pages/Heroes/Index.jsx'
+import HomeIndex from '../Pages/Home/Index.jsx'
+import { MessagesProvider } from "./Messages.jsx";
+
+
+
+export const Router = createContext();
+
+export const RouterProvider = ({ children }) => {
+
+    const [route, setRoute] = useState(_ => {
+        const hash = window.location.hash || '#home';
+        return hash.split('/').shift()
+    }
+    );
+    const [params, setParams] = useState(_ => {
+        const hash = window.location.hash.split('/');
+        hash.shift();
+        return hash;
+    });
+
+    useEffect(_ => {
+        const handleHashChange = _ => {
+            const hash = window.location.hash.split('/');
+            setRoute(hash.shift());
+            setParams(hash);
+        }
+        window.addEventListener('hashchange', handleHashChange);
+        return _ => window.removeEventListener('hashchange', handleHashChange);
+    }, []);
+
+
+    const routes = [
+        { path: '#authors', component: <AuthorIndex /> },
+        { path: '#books', component: <BookIndex /> },
+        { path: '#heroes', component: <HeroIndex /> },
+        { path: '#home', component: <HomeIndex /> },
+
+
+    ];
+
+    const routeComponent = routes.find(r => r.path === route)?.component || <Page404 />;
+
+    return (
+        <Router.Provider value={{ params }}>
+
+            <MessagesProvider>
+                {routeComponent}
+            </MessagesProvider>
+        </Router.Provider>
+    );
+}

@@ -14,9 +14,7 @@ export default function useLogin() {
         if (null !== inputs) {
             axios.post(`${SERVER_URL}/login`, inputs)
                 .then(res => {
-                    // window.localStorage.setItem('token', res.data.token);
-                    // window.localStorage.setItem('user', res.data.name);
-                    login(res.data.token, res.data.name)
+                    login(res.data.token, res.data.name, res.data.role, res.data.id)
                     window.location.href = `${SITE_URL}/${AFTER_LOGIN_URL}`;
                     console.log(res)
                 })
@@ -36,7 +34,7 @@ export default function useLogin() {
                     }
                 });
         }
-    }, [inputs, login]);
+    }, [inputs]);
 
 
 

@@ -1,3 +1,5 @@
+import Gate from "../Auth/Gate";
+
 export default function Fruit({ fruit }) {
 
     return (
@@ -10,12 +12,15 @@ export default function Fruit({ fruit }) {
                 fruit.temp
                     ?
                     <span>
-                        <b>Edit</b>
-                        <b>Delete</b></span>
+                        <Gate roles='admin|user'><b>Edit</b></Gate>
+                        <Gate roles='admin'><b>Delete</b></Gate>
+                    </span>
                     :
                     <span>
-                        <b><a href={"#fruits/edit/" + fruit.id}>Edit</a></b>
-                        <b><a href={"#fruits/delete/" + fruit.id}>Delete</a></b></span>
+                        <Gate roles='admin|user'><b><a href={"#fruits/edit/" + fruit.id}>Edit</a></b></Gate>
+                        <Gate roles='admin'><b><a href={"#fruits/delete/" + fruit.id}>Delete</a></b></Gate>
+
+                    </span>
             }
 
         </div >

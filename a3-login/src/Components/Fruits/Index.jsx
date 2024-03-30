@@ -6,6 +6,7 @@ import Create from "./Create";
 import { FruitsProvider } from "../../Contexts/Fruits";
 import Edit from "./Edit";
 import Delete from "./Delete";
+import PageGate from "../Auth/PageGate";
 
 export default function Index() {
 
@@ -16,11 +17,11 @@ export default function Index() {
     if (params.length === 0) {
         returnComponent = <List />
     } else if (params.length === 1 && params[0] === 'create') {
-        returnComponent = <Create />
+        returnComponent = <PageGate roles='admin|user'><Create /></PageGate>
     } else if (params.length === 2 && params[0] === 'edit') {
-        returnComponent = <Edit />
+        returnComponent = <PageGate roles='admin|user'><Edit /></PageGate>
     } else if (params.length === 2 && params[0] === 'delete') {
-        returnComponent = <Delete />
+        returnComponent = <PageGate roles='admin'><Delete /></PageGate>
     }
 
     return (
