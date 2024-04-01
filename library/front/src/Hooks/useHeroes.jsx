@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import { SERVER_URL } from "../Constants/main";
-import * as a from "../Actions/heroes";
 import { v4 as uuidv4 } from 'uuid';
-import { MessagesContext } from "../Contexts/Messages";
-
+import { SERVER_URL } from '../Constants/main';
+import * as a from '../Actions/heroes';
+import { MessagesContext } from '../Contexts/Messages';
+import { Router } from '../Contexts/Router';
+import { Auth } from '../Contexts/Auth';
 
 
 export default function useHeroes(dispatchHeroes) {
@@ -12,85 +13,100 @@ export default function useHeroes(dispatchHeroes) {
     const [storeHero, setStoreHero] = useState(null);
     const [updateHero, setUpdateHero] = useState(null);
     const [destroyHero, setDestroyHero] = useState(null);
-    const { addMessage } = useContext(MessagesContext)
+    const { setUser } = useContext(Auth);
+    const { addMessage } = useContext(MessagesContext);
+    const { setErrorPageType } = useContext(Router);
 
-    // list
+    //list
     useEffect(_ => {
-
-        axios.get(`${SERVER_URL}/heroes`)
+        axios.get(`${SERVER_URL}/heroes`, { withCredentials: true })
             .then(res => {
                 dispatchHeroes(a.getHeroes(res.data))
             })
             .catch(err => {
-                console.log(err)
+                if (err?.response?.status === 401) {
+                    if (err.response.data.type === 'login') {
+                        window.localStorage.removeItem('user');
+                        window.localStorage.removeItem('role');
+                        window.localStorage.removeItem('id');
+                        setUser(null);
+                        window.location.href = '#login';
+                    } else {
+                        setErrorPageType(401);
+                    }
+                } else {
+                    setErrorPageType(503);
+                }
             });
-    }, [dispatchHeroes]);
+    }, [dispatchHeroes, setErrorPageType, setUser]);
 
 
-    // store
+
+    //store
     useEffect(_ => {
         if (null !== storeHero) {
             const uuid = uuidv4();
-            dispatchHeroes(a.storeHeroAsTemp({ ...storeHero, id: uuid }))
+            dispatchHeroes(a.storeHeroAsTemp({ ...storeHero, id: uuid }));
             const toServer = { ...storeHero };
             delete toServer.author;
             delete toServer.book;
-            axios.post(`${SERVER_URL}/heroes`, { ...toServer, id: uuid })
+            axios.post(`${SERVER_URL}/heroes`, { ...toServer, id: uuid }, { withCredentials: true })
                 .then(res => {
-                    dispatchHeroes(a.storeHeroAsReal(res.data))
+                    dispatchHeroes(a.storeHeroAsReal(res.data));
                     setStoreHero(null);
-                    addMessage(res.data.message)
+                    addMessage(res.data.message);
                 })
                 .catch(err => {
-                    console.log(err)
                     dispatchHeroes(a.storeHeroAsUndo({ id: uuid }));
                     setStoreHero(null);
-                    err?.response?.data?.message && addMessage(err.response.data.message)
+                    err?.response?.data?.message && addMessage(err.response.data.message);
                 });
         }
     }, [storeHero, dispatchHeroes, addMessage]);
 
-
     useEffect(_ => {
         if (null !== destroyHero) {
             dispatchHeroes(a.deleteHeroAsTemp(destroyHero));
-
-            axios.delete(`${SERVER_URL}/heroes/${destroyHero.id}`)
+            axios.delete(`${SERVER_URL}/heroes/${destroyHero.id}`, { withCredentials: true })
                 .then(res => {
                     setDestroyHero(null);
                     dispatchHeroes(a.deleteHeroAsReal(res.data));
-                    addMessage(res.data.message)
+                    addMessage(res.data.message);
                 })
                 .catch(err => {
-                    dispatchHeroes(a.deleteHeroAsUndo(destroyHero))
+                    dispatchHeroes(a.deleteHeroAsUndo(destroyHero));
                     setDestroyHero(null);
-                    err?.response?.data?.message && addMessage(err.response.data.message)
-                })
+                    err?.response?.data?.message && addMessage(err.response.data.message);
+                });
         }
-    }, [destroyHero, dispatchHeroes, addMessage])
+    }, [destroyHero, dispatchHeroes, addMessage]);
+
 
     useEffect(_ => {
         if (null !== updateHero) {
-            dispatchHeroes(a.updateHeroAsTemp(updateHero))
+            dispatchHeroes(a.updateHeroAsTemp(updateHero));
             const toServer = { ...updateHero };
             delete toServer.author;
             delete toServer.book;
             if (updateHero.image === updateHero.old.image) {
-                toServer.image = null
+                toServer.image = null;
             }
-            axios.put(`${SERVER_URL}/heroes/${updateHero.id}`, toServer)
+            axios.put(`${SERVER_URL}/heroes/${updateHero.id}`, toServer, { withCredentials: true })
                 .then(res => {
                     setUpdateHero(null);
-                    dispatchHeroes(a.updateHeroAsReal(res.data))
-                    addMessage(res.data.message)
+                    dispatchHeroes(a.updateHeroAsReal(res.data));
+                    addMessage(res.data.message);
                 })
                 .catch(err => {
-                    dispatchHeroes(a.updateHeroAsUndo(updateHero))
                     setUpdateHero(null);
-                    err?.response?.data?.message && addMessage(err.response.data.message)
-                })
+                    dispatchHeroes(a.updateHeroAsUndo(updateHero));
+                    err?.response?.data?.message && addMessage(err.response.data.message);
+                });
         }
-    }, [updateHero, dispatchHeroes, addMessage])
+    }, [updateHero, dispatchHeroes, addMessage]);
+
+
+
 
 
 
@@ -102,5 +118,4 @@ export default function useHeroes(dispatchHeroes) {
         destroyHero,
         setDestroyHero
     };
-
 }

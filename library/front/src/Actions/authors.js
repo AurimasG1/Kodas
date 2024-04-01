@@ -42,7 +42,7 @@ export function deleteAuthorAsReal(response) {
 	};
 }
 
-export function deleteAuthorasUndo(author) {
+export function deleteAuthorAsUndo(author) {
 	return {
 		type: constants.DELETE_AUTHOR_UNDO,
 		payload: author,

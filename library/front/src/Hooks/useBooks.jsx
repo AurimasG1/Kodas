@@ -35,14 +35,13 @@ export default function useBooks(dispatchBooks) {
             dispatchBooks(a.storeBookAsTemp({ ...storeBook, id: uuid }))
             const withoutAuthor = { ...storeBook };
             delete withoutAuthor.author;
-            axios.post(`${SERVER_URL}/books`, { ...withoutAuthor, id: uuid })
+            axios.post(`${SERVER_URL}/books`, { ...withoutAuthor, id: uuid }, { withCredentials: true })
                 .then(res => {
                     dispatchBooks(a.storeBookAsReal(res.data))
                     setStoreBook(null);
                     addMessage(res.data.message)
                 })
                 .catch(err => {
-                    console.log(err)
                     dispatchBooks(a.storeBookAsUndo({ id: uuid }));
                     setStoreBook(null);
                     err?.response?.data?.message && addMessage(err.response.data.message)
@@ -55,7 +54,7 @@ export default function useBooks(dispatchBooks) {
         if (null !== destroyBook) {
             dispatchBooks(a.deleteBookAsTemp(destroyBook));
 
-            axios.delete(`${SERVER_URL}/books/${destroyBook.id}`)
+            axios.delete(`${SERVER_URL}/books/${destroyBook.id}`, { withCredentials: true })
                 .then(res => {
                     setDestroyBook(null);
                     dispatchBooks(a.deleteBookAsReal(res.data));
@@ -74,7 +73,7 @@ export default function useBooks(dispatchBooks) {
             dispatchBooks(a.updateBookAsTemp(updateBook))
             const withoutAuthor = { ...updateBook };
             delete withoutAuthor.author;
-            axios.put(`${SERVER_URL}/books/${updateBook.id}`, withoutAuthor)
+            axios.put(`${SERVER_URL}/books/${updateBook.id}`, withoutAuthor, { withCredentials: true })
                 .then(res => {
                     setUpdateBook(null);
                     dispatchBooks(a.updateBookAsReal(res.data))

@@ -22,9 +22,18 @@ export const validate = (value, input, errors, rules) => {
 };
 
 export const sometimes = value => {
+	if (
+		typeof value === 'number' ||
+		typeof value === 'boolean' ||
+		typeof value === 'object'
+	) {
+		return 0;
+	}
+
 	if (value) {
 		return 0;
 	}
+
 	return 1;
 };
 
@@ -145,5 +154,5 @@ export const imageSize = (value, size) => {
 	if (value.size <= size) {
 		return true;
 	}
-	return 'Image is too big. Maximum size is ' + size / 1000000 + 'MB';
+	return 'Image is too big. Maximum size is ' + size / 10000000 + 'MB';
 };

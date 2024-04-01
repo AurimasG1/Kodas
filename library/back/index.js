@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const mysql = require('mysql');
 const fs = require('fs');
 const md5 = require('md5');
@@ -15,8 +16,14 @@ const connection = mysql.createConnection({
 const app = express();
 const port = 3001;
 
-app.use(cors());
-app.use(express.json({ limit: '10mb' }));
+app.use(
+	cors({
+		origin: 'http://localhost:3000',
+		credentials: true,
+	})
+);
+app.use(cookieParser());
+app.use(express.json({ limit: '12mb' }));
 app.use(express.static('public'));
 app.use(bodyParser.json());
 connection.connect();
@@ -69,20 +76,114 @@ const deleteImage = heroId => {
 	});
 };
 
-// router
+const checkUserisAuthorized = (user, res, roles) => {
+	if (user && roles.includes(user.role)) {
+		return true;
+	} else if (user && roles.includes('self:' + user.id)) {
+		return true;
+	} else if (user) {
+		res.status(401).json({
+			message: 'Not authorized',
+			type: 'role',
+		});
+	} else {
+		res.status(401).json({
+			message: 'Not logged in',
+			type: 'login',
+		});
+	}
+};
 
-app.get('/authors', (req, res) => {
-	const sql = 'SELECT * FROM authors';
-	connection.query(sql, (err, results) => {
+const doAuth = (req, res, next) => {
+	const token = req.cookies.libSession || '';
+
+	if (token === '') {
+		return next();
+	}
+
+	const sql = `
+	SELECT name, id, role
+	FROM users
+	WHERE session = ?
+	`;
+
+	connection.query(sql, token, (err, results) => {
 		if (err) {
-			res.status(500).send(err);
+			res
+				.status(500)
+				.json({ message: { type: 'danger', text: 'Authorization failed' } });
 		} else {
-			res.json(results);
+			if (results.length > 0) {
+				const user = results[0];
+				req.user = user;
+			}
+		}
+		return next();
+	});
+};
+
+app.use(doAuth);
+
+//login
+app.post('/login', (req, res) => {
+	const { username, password } = req.body;
+	const sql = 'SELECT * FROM users WHERE name = ? AND PASSWORD = ?';
+	connection.query(sql, [username, md5(password)], (err, results) => {
+		if (err) {
+			res.status(500).json({ message: { type: 'danger', text: 'Login failed' } });
+		} else {
+			if (results.length > 0) {
+				const token = md5(uuidv4());
+				const sql = 'UPDATE users SET session = ? WHERE id = ?';
+				connection.query(sql, [token, results[0].id], err => {
+					if (err) {
+						res
+							.status(500)
+							.json({ message: { type: 'danger', text: 'Login failed' } });
+					} else {
+						res.cookie('libSession', token, { maxAge: 1000 * 60 * 60 * 24 * 365 });
+						res.json({
+							message: { type: 'success', text: 'Login succeeded' },
+							success: true,
+							token,
+							name: results[0].name,
+							role: results[0].role,
+							id: results[0].id,
+						});
+					}
+				});
+			} else {
+				res
+					.status(401)
+					.json({ message: { type: 'danger', text: 'Invalid name or password' } });
+			}
 		}
 	});
 });
 
+//logout
+app.post('/logout', (req, res) => {
+	const token = req.cookies.libSession || '';
+	const sql = 'UPDATE users set session = NULL WHERE session = ?';
+	connection.query(sql, [token], err => {
+		if (err) {
+			res
+				.status(500)
+				.json({ message: { type: 'danger', text: 'Server error On Logout' } });
+		} else {
+			res.clearCookie('libSession');
+			res.json({ message: { type: 'success', text: 'Logged out' } });
+		}
+	});
+});
+
+// router
+
 app.get('/stats', (req, res) => {
+	if (!checkUserisAuthorized(req.user, res, ['admin', 'user'])) {
+		return;
+	}
+
 	const sql = `
 	SELECT 'authors' AS name, COUNT(*) AS count, NULL AS stats
 	FROM authors
@@ -93,6 +194,17 @@ app.get('/stats', (req, res) => {
 	SELECT 'heroes', COUNT(*), SUM(good)
 	FROM Heroes
 	`;
+	connection.query(sql, (err, results) => {
+		if (err) {
+			res.status(500).send(err);
+		} else {
+			res.json(results);
+		}
+	});
+});
+
+app.get('/authors', (req, res) => {
+	const sql = 'SELECT * FROM authors';
 	connection.query(sql, (err, results) => {
 		if (err) {
 			res.status(500).send(err);
@@ -139,6 +251,12 @@ app.post('/authors', (req, res) => {
 	// res.status(403).json({ status: 'login' });
 	// return;
 	const { name, surname, nickname, born } = req.body;
+	if (!name || !surname || !born) {
+		res.status(422).json({
+			message: { type: 'danger', text: 'Name, surname and born are required.' },
+		});
+		return;
+	}
 	const sql =
 		'INSERT INTO authors (name, surname, nickname, born) VALUES (?, ?, ?, ?)';
 	connection.query(sql, [name, surname, nickname, born], (err, result) => {
@@ -159,6 +277,15 @@ app.post('/books', (req, res) => {
 	// res.status(403).json({ status: 'login' });
 	// return;
 	const { title, pages, genre, author_id } = req.body;
+	if (!title || !pages || !genre || !author_id) {
+		res.status(422).json({
+			message: {
+				type: 'danger',
+				text: 'Title, pages, genre and author are required.',
+			},
+		});
+		return;
+	}
 	const sql =
 		'INSERT INTO books (title, pages, genre, author_id) VALUES (?, ?, ?, ?)';
 	connection.query(sql, [title, pages, genre, author_id], (err, result) => {
@@ -182,6 +309,14 @@ app.post('/heroes', (req, res) => {
 	const filename = req.body.image ? writeImage(req.body.image) : null;
 
 	const { name, good, book_id } = req.body;
+
+	if (!name || ![0, 1].includes(good) || !book_id) {
+		console.log(good);
+		res.status(422).json({
+			message: { type: 'danger', text: 'Name, good and book are required.' },
+		});
+		return;
+	}
 	const sql = 'INSERT INTO heroes (name, good, book_id, image) VALUES (?, ?, ?, ?)';
 	connection.query(
 		sql,
@@ -205,6 +340,12 @@ app.put(`/authors/:id`, (req, res) => {
 	// res.status(403).json({ status: 'login' });
 	// return;
 	const { name, surname, nickname, born } = req.body;
+	if (!name || !surname || !born) {
+		res.status(422).json({
+			message: { type: 'danger', text: 'Name, surname and born are required.' },
+		});
+		return;
+	}
 	const sql =
 		'UPDATE authors SET name = ?, surname = ?, nickname = ?, born = ? WHERE id = ?';
 	connection.query(sql, [name, surname, nickname, born, req.params.id], err => {
@@ -224,6 +365,15 @@ app.put(`/books/:id`, (req, res) => {
 	// res.status(403).json({ status: 'login' });
 	// return;
 	const { title, pages, genre, author_id } = req.body;
+	if (!title || !pages || !genre || !author_id) {
+		res.status(422).json({
+			message: {
+				type: 'danger',
+				text: 'Title, pages, genre and author are required.',
+			},
+		});
+		return;
+	}
 	const sql =
 		'UPDATE books SET title = ?, pages = ?, genre = ?, author_id = ? WHERE id = ?';
 	connection.query(sql, [title, pages, genre, author_id, req.params.id], err => {
@@ -247,6 +397,13 @@ app.put(`/heroes/:id`, (req, res) => {
 	}
 	const filename = writeImage(req.body.image);
 	const { name, good, book_id } = req.body;
+	if (!name || ![0, 1].includes(good) || !book_id) {
+		console.log(good);
+		res.status(422).json({
+			message: { type: 'danger', text: 'Name, good and book are required.' },
+		});
+		return;
+	}
 	let sql;
 	let params;
 	if (req.body.del) {

@@ -1,0 +1,128 @@
+@charset "UTF-8";
+.form {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px;
+}
+.form input[type=text],
+.form input[type=number],
+.form select,
+.form textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid skyblue;
+  border-radius: 4px;
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+}
+.form input[type=text]:focus,
+.form input[type=number]:focus,
+.form select:focus,
+.form textarea:focus {
+  outline: none;
+  border: 2px solid crimson;
+}
+.form input[type=number] {
+  width: 100px;
+}
+.form input[type=color] {
+  width: 100px;
+  height: 100px;
+}
+.form select {
+  background-color: #282c34;
+  color: white;
+  font-size: 20px;
+}
+.form .checkboxes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 10px;
+  margin: 20px;
+}
+.form .checkboxes label {
+  color: white;
+  font-size: 30px;
+  padding: 0 30px;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+}
+.form .checkboxes label:before {
+  content: "☐";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+}
+.form .checkboxes input {
+  display: none;
+}
+.form .checkboxes input:checked + label:before {
+  content: "☑";
+}
+.form .radios {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 10px;
+  margin: 20px;
+}
+.form .radios label {
+  color: white;
+  font-size: 30px;
+  padding: 0 30px;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+}
+.form .radios label:before {
+  content: "◉";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+}
+.form .radios input {
+  display: none;
+}
+.form .radios input:checked + label:before {
+  content: "◎";
+}
+.form input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  margin-top: 20px;
+}
+.form input[type=range]::-webkit-slider-runnable-track {
+  background: skyblue;
+  height: 3px;
+}
+.form input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -12px; /* Centers thumb on the track */
+  background-color: skyblue;
+  height: 28px;
+  width: 20px;
+}/*# sourceMappingURL=form.css.map */

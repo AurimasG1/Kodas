@@ -1,3 +1,10 @@
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
 .App {
   text-align: center;
 }
@@ -31,107 +38,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 70%;
-  gap: 10px;
-  margin: 20px;
-}
-.squares .square {
-  width: 150px;
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 16px;
-  background-color: #282c34;
-  border: 1px solid white;
-  border-radius: 10px;
-}
-.squares .square__animal {
-  letter-spacing: 1px;
-}
-
-.kvadratai {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-self: center;
-  gap: 5px;
-  margin: 5px;
-}
-.kvadratai .kvadratas {
-  width: 100px;
-  height: 100px;
-  border-radius: 1px;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  border: 1px solid black;
-}
-
-.apskritimai {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-self: center;
-  gap: 5px;
-  margin: 5px;
-}
-.apskritimai .apskritimas {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  border: 1px solid white;
-}
-
-.dogs {
-  display: flex;
-  gap: 10px;
-  margin: 30px;
-}
-.dogs .dog {
-  width: 100px;
-  height: 100px;
-  border: 1px solid white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 16px;
-}
-.dogs .circle {
-  border-radius: 50%;
-}
-.dogs .square {
-  border: 1px solid gray;
-}
-
-.circle {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  text-align: center;
-  font-size: 10px;
-  font-weight: bold;
-}
-
-.squares {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
   justify-content: flex-start;
   flex-wrap: wrap;
   width: 70%;
@@ -154,24 +60,21 @@
   letter-spacing: 2px;
 }
 .squares .square.spin {
-  animation: spin 30s linear infinite;
+  animation: spin 10s linear infinite;
+}
+.squares .square.pulse {
+  animation: pulse 1s linear infinite;
+  animation-delay: 0.5s;
 }
 .squares .square.pointer {
   cursor: pointer;
-}
-.squares .square.big {
-  width: 200px;
-  height: 200px;
-}
-.squares .square.big.pointer {
   user-select: none;
 }
-
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
+.squares .square.big {
+  width: 300px;
+  height: 300px;
 }
+
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -182,4 +85,116 @@
   100% {
     transform: scale(1);
   }
+}
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.dogs {
+  display: flex;
+  gap: 10px;
+  margin: 30px;
+}
+.dogs .dog {
+  width: 100px;
+  height: 100px;
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+}
+.dogs .circle {
+  border-radius: 50%;
+}
+.dogs .square {
+  border: 1px solid gray;
+}
+
+.color-circle {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+}
+
+.showLine {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.showLine .buttons {
+  justify-content: flex-end;
+  width: 200px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  position: fixed;
+  right: 10px;
+  top: 50px;
+}
+.messages .alert {
+  width: 100%;
+}
+
+.color-name {
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+}
+
+.square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.big-bin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-width: 300px;
+  min-height: 300px;
+  margin: 30px;
+  border: 2px solid gray;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  font-size: 2rem;
+  width: 25%;
+  background: #fff;
+  padding: 1.2em;
+  border-radius: 5px;
+  text-align: center;
+  align-items: center;
+}
+
+.modal-content button {
+  width: 30%;
+  margin-top: 10px;
+  cursor: pointer;
 }/*# sourceMappingURL=App.css.map */

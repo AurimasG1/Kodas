@@ -1,25 +1,30 @@
-import { useContext } from "react";
-import Navbar from "../../Components/Navbar";
-import Create from "./Create";
-import Delete from "./Delete";
-import Edit from "./Edit";
-import List from "./List";
-import { Authors } from "../../Contexts/Authors";
+import Navbar from '../../Components/Navbar';
+import { Authors } from '../../Contexts/Authors';
+import Create from './Create';
+import Delete from './Delete';
+import List from './List';
+import Edit from './Edit'
+import { useContext } from 'react';
 
 export default function Layout() {
 
-    const { editAuthor } = useContext(Authors)
+    const { editAuthor, authors } = useContext(Authors);
+
+    if (null === authors) {
+        return <div className="loader"><div></div></div>;
+    }
 
     return (
         <>
             <Navbar />
-            <div className="container">
+            <div className="container text-center">
                 <div className="row">
                     <div className="col-4 mt-4">
                         <h1>Authors</h1>
                     </div>
                 </div>
             </div>
+
             <div className="container">
                 <div className="row">
                     <div className="col-4 mt-4">
@@ -33,5 +38,5 @@ export default function Layout() {
             <Delete />
             {editAuthor && <Edit />}
         </>
-    )
+    );
 }

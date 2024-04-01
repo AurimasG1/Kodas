@@ -1,25 +1,32 @@
-import { useContext } from "react";
-import Navbar from "../../Components/Navbar";
-import Create from "./Create";
-import Delete from "./Delete";
-import Edit from "./Edit";
-import List from "./List";
-import { Books } from "../../Contexts/Books";
+import Navbar from '../../Components/Navbar';
+import { Books } from '../../Contexts/Books';
+import Create from './Create';
+import Delete from './Delete';
+import List from './List';
+import Edit from './Edit'
+import { useContext } from 'react';
+
+
 
 export default function Layout() {
 
-    const { editBook, deleteBook } = useContext(Books)
+    const { editBook, deleteBook, books } = useContext(Books);
+
+    if (null === books) {
+        return <div className="loader"><div></div></div>;
+    }
 
     return (
         <>
             <Navbar />
-            <div className="container">
+            <div className="container text-center">
                 <div className="row">
                     <div className="col-4 mt-4">
                         <h1>Books</h1>
                     </div>
                 </div>
             </div>
+
             <div className="container">
                 <div className="row">
                     <div className="col-4 mt-4">
@@ -30,8 +37,8 @@ export default function Layout() {
                     </div>
                 </div>
             </div>
-            {deleteBook && <Delete />}
             {editBook && <Edit />}
+            {deleteBook && <Delete />}
         </>
-    )
+    );
 }

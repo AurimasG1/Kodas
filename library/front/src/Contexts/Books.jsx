@@ -6,7 +6,7 @@ export const Books = createContext();
 
 export const BooksProvider = ({ children }) => {
 
-    const [books, dispatchBooks] = useReducer(booksReducer, []);
+    const [books, dispatchBooks] = useReducer(booksReducer, null);
     const [deleteBook, setDeleteBook] = useState(null);
     const [editBook, setEditBook] = useState(null);
 

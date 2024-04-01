@@ -1,0 +1,67 @@
+.users-box {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 800px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin: 40px auto;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.users-box .user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 20px;
+  flex: 100%;
+  border-bottom: 1px solid #ccc;
+}
+.users-box .user .about {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 20px;
+}
+.users-box .user .about .name {
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+}
+.users-box .user .about .role {
+  color: crimson;
+  font-size: 30px;
+  display: flex;
+  gap: 10px;
+}
+.users-box .user .actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  gap: 20px;
+}
+.users-box .user .actions a {
+  text-decoration: none;
+  font-size: 20px;
+}
+.users-box .user .actions a:hover {
+  text-decoration: underline;
+}
+.users-box .user .actions .edit {
+  color: darkgreen;
+  font-size: 30px;
+}
+.users-box .user .actions .delete {
+  color: crimson;
+  font-size: 30px;
+}
+
+.users-center {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}/*# sourceMappingURL=users.css.map */
