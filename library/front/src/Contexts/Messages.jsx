@@ -36,9 +36,3 @@ export const MessagesProvider = ({ children }) => {
         </MessagesContext.Provider >
     )
 }
-
-
-// <div key={i} className={`alert alert-${message.type} alert-dismissible fade show`} role="alert">
-//                                 {message.text}
-//                                 <button type="button" className="btn-close" data-bs-dismiss='alert' aria-label="Close" onClick={_ => setMessages(prev => prev.filter(m => m !== messages))}></button>
-//                             </div>

@@ -8,6 +8,7 @@ import { MessagesProvider } from "./Messages.jsx";
 import Login from "../Pages/Auth/Login.jsx";
 import Page503 from "../Pages/Page503.jsx";
 import Page401 from "../Pages/Page401.jsx";
+import PageUps from "../Pages/PageUps.jsx";
 
 
 
@@ -50,6 +51,7 @@ export const RouterProvider = () => {
     const errorPages = [
         { type: 503, component: <Page503 /> },
         { type: 401, component: <Page401 /> },
+        { type: 'ups', component: <PageUps /> },
 
     ]
     const routeComponent = routes.find(r => r.path === route)?.component || <Page404 />;

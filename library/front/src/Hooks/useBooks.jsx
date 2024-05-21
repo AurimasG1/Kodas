@@ -4,6 +4,8 @@ import { SERVER_URL } from "../Constants/main";
 import * as a from "../Actions/books";
 import { v4 as uuidv4 } from 'uuid';
 import { MessagesContext } from "../Contexts/Messages";
+import { Router } from "../Contexts/Router";
+import { Auth } from "../Contexts/Auth";
 
 
 
@@ -12,20 +14,34 @@ export default function useBooks(dispatchBooks) {
     const [storeBook, setStoreBook] = useState(null);
     const [updateBook, setUpdateBook] = useState(null);
     const [destroyBook, setDestroyBook] = useState(null);
-    const { addMessage } = useContext(MessagesContext)
+    const { addMessage } = useContext(MessagesContext);
+    const { setUser } = useContext(Auth)
+    const { setErrorPageType } = useContext(Router);
 
 
     // list
     useEffect(_ => {
-
-        axios.get(`${SERVER_URL}/books`)
+        axios.get(`${SERVER_URL}/books`, { withCredentials: true })
             .then(res => {
+                console.log(res.data);
                 dispatchBooks(a.getBooks(res.data))
             })
             .catch(err => {
-                console.log(err)
+                if (err?.response?.status === 401) {
+                    if (err.response.data.type === 'login') {
+                        window.localStorage.removeItem('user');
+                        window.localStorage.removeItem('role');
+                        window.localStorage.removeItem('id');
+                        setUser(null);
+                        window.location.href = '#login';
+                    } else {
+                        setErrorPageType(401);
+                    }
+                } else {
+                    setErrorPageType(503);
+                }
             });
-    }, [dispatchBooks]);
+    }, [dispatchBooks, setErrorPageType, setUser]);
 
 
     // store

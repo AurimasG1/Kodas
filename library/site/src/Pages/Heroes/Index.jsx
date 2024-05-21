@@ -1,0 +1,233 @@
+import Navbar from '../../Components/Navbar';
+import useGet from '../../Hooks/useGet';
+import * as icon from '../../Icons';
+import { SERVER_URL } from '../../Constants/main';
+import { useEffect, useState } from 'react';
+
+const filterBy = [
+	{ filter: 'good', label: 'Good' },
+	{ filter: 'bad', label: 'Bad' }
+];
+
+const sortBy = [
+	{ sort: 'name_asc', label: 'Name (A-Z)' },
+	{ sort: 'name_desc', label: 'Name (Z-A)' }
+];
+
+
+export default function Index() {
+	const { data, loading, setUrl } = useGet('/heroes-list');
+
+	const [filter, setFilter] = useState('');
+	const [sort, setSort] = useState('');
+
+	useEffect(_ => {
+		if (sort && !filter) {
+			setUrl(`/heroes-list?sort=${sort}`);
+		} else if (sort && filter) {
+			setUrl(`/heroes-list?filter=${filter}&sort=${sort}`);
+		} else if (!sort && filter) {
+			setUrl(`/heroes-list?filter=${filter}`);
+		} else {
+			setUrl('/heroes-list');
+		}
+	}, [sort, filter, setUrl]);
+
+	const go = (e, page) => {
+		e.preventDefault();
+		if (page === 'prev') {
+			page = data.page - 1;
+			page = Math.max(1, page);
+		}
+		if (page === 'next') {
+			page = data.page + 1;
+			page = Math.min(data.totalPages, page);
+		}
+
+		if (filter && !sort) {
+			setUrl('/heroes-list?filter=' + filter + '&page=' + page);
+		} else if (filter && sort) {
+			setUrl('/heroes-list?filter=' + filter + '&sort=' + sort + '&page=' + page);
+		} else if (!filter && sort) {
+			setUrl('/heroes-list?sort=' + sort + '&page=' + page);
+		} else {
+			setUrl('/heroes-list?page=' + page);
+		}
+	}
+	// const pages = Array.from({ length: data.totalPages }, (_, k) => k + 1)
+
+	const getPages = _ => {
+		const showPaginators = 3;
+		const activePage = data.page;
+		const pages = [];
+		let start = activePage - showPaginators;
+		let end = activePage + showPaginators;
+		for (let i = start; i <= end; i++) {
+			if (i >= 1 && i <= data.totalPages) {
+				pages.push(i);
+			}
+		}
+		return pages;
+	}
+
+
+	if (loading)
+		return (
+			<div className="loader">
+				<div></div>
+			</div>
+		);
+
+	return (
+		<>
+			<Navbar />
+			<div className="container text-center">
+				<div className="row">
+					<div className="col-4 mt-4">
+						<h1>Heroes</h1>
+					</div>
+				</div>
+			</div>
+			<div className="container">
+				<div className="row">
+					<div className="col-12 mt-4">
+						<div className="card">
+							<div className="card-header" style={{ backgroundColor: 'green' }}>
+								<div className="container">
+									<div className="row">
+										<div className="col-3">
+											<h3>List</h3>
+										</div>
+										<div className="col-3">
+											<div className="mb-3">
+												<label htmlFor="filter" className="form-label">Filter heroes</label>
+												<select className="form-select" id="filter" value={filter} onChange={e => setFilter(e.target.value)}>
+													<option value="">All</option>
+													{
+														filterBy.map(item => <option key={item.filter} value={item.filter}>{item.label}</option>)
+													}
+												</select>
+											</div>
+										</div>
+										<div className="col-3">
+											<div className="mb-3">
+												<label htmlFor="sort" className="form-label">Sort by name</label>
+												<select className="form-select" id="sort" value={sort} onChange={e => setSort(e.target.value)}>
+													<option value="">default</option>
+													{
+														sortBy.map(item => <option key={item.sort} value={item.sort}>{item.label}</option>)
+													}
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<nav className="paginator">
+								<ul className="pagination">
+									{
+										data.page === 1 || <li className="page-item prev"><a className="page-link" onClick={e => go(e, 1)} href="/">{icon.last}</a></li>
+									}
+									{
+										data.page === 1 || <li className="page-item prev"><a className="page-link" onClick={e => go(e, 'prev')} href="/">{icon.next}</a></li>
+									}
+
+									{
+										getPages().map(page => {
+											return (
+												<li key={page} className={'page-item' + (data.page === page ? ' active' : '')}>
+													{
+														data.page === page && <span className="page-link">{page}</span>
+													}
+													{
+														data.page === page || <a className="page-link" onClick={e => go(e, page)} href="/">{page}</a>
+													}
+												</li>
+											);
+										})
+									}
+
+									{
+										data.page === data.totalPages || <li className="page-item next"><a className="page-link" onClick={e => go(e, 'next')} href="/">{icon.next}</a></li>
+									}
+									{
+										data.page === data.totalPages || <li className="page-item next"><a className="page-link" onClick={e => go(e, data.totalPages)} href="/">{icon.last}</a></li>
+									}
+
+								</ul>
+								<div className="pages-info">
+									Page {data.page} of {data.totalPages}
+								</div>
+							</nav>
+							<div className="card-body" style={{ backgroundColor: 'green' }}>
+								<table className="table heroes-table">
+									<thead>
+										<tr>
+											<th style={{ backgroundColor: 'green' }}>Id</th>
+											<th style={{ backgroundColor: 'green' }}>Name</th>
+											<th style={{ backgroundColor: 'green' }}>Good/Bad</th>
+											<th style={{ backgroundColor: 'green' }}>Book</th>
+											<th style={{ backgroundColor: 'green' }}>Image</th>
+										</tr>
+									</thead>
+									<tbody>
+										{data.result.map(hero => {
+											return (
+												<tr key={hero.id}>
+													<td style={{ backgroundColor: 'green' }}>{hero.id}</td>
+													<td style={{ backgroundColor: 'green' }}>{hero.name}</td>
+													<td style={{ backgroundColor: 'green' }}><span className={'icon ' + (hero.good ? 'good' : 'bad')}>{hero.good ? icon.good : icon.bad}</span></td>
+													<td style={{ backgroundColor: 'green' }}><a className='nice-link' href={'#book/' + hero.url}>{hero.title}</a></td>
+													<td style={{ backgroundColor: 'green' }}>
+														{hero.image === null && <span>No image</span>}
+														{hero.image && <img src={SERVER_URL + '/' + hero.image} alt={hero.name} style={{ maxWidth: '200px' }} className="img-thumbnail" />}
+													</td>
+												</tr>
+											);
+										})}
+									</tbody>
+								</table>
+							</div>
+							<nav className="paginator">
+								<ul className="pagination">
+									{
+										data.page === 1 || <li className="page-item prev"><a className="page-link" onClick={e => go(e, 1)} href="/">{icon.last}</a></li>
+									}
+									{
+										data.page === 1 || <li className="page-item prev"><a className="page-link" onClick={e => go(e, 'prev')} href="/">{icon.next}</a></li>
+									}
+
+									{
+										getPages().map(page => {
+											return (
+												<li key={page} className={'page-item' + (data.page === page ? ' active' : '')}>
+													{
+														data.page === page && <span className="page-link">{page}</span>
+													}
+													{
+														data.page === page || <a className="page-link" onClick={e => go(e, page)} href="/">{page}</a>
+													}
+												</li>
+											);
+										})
+									}
+
+									{
+										data.page === data.totalPages || <li className="page-item next"><a className="page-link" onClick={e => go(e, 'next')} href="/">{icon.next}</a></li>
+									}
+									{
+										data.page === data.totalPages || <li className="page-item next"><a className="page-link" onClick={e => go(e, data.totalPages)} href="/">{icon.last}</a></li>
+									}
+
+								</ul>
+								<div className="pages-info">
+									Page {data.page} of {data.totalPages}
+								</div>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
+	);
+}

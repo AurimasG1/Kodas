@@ -6,8 +6,6 @@ import List from './List';
 import Edit from './Edit'
 import { useContext } from 'react';
 
-
-
 export default function Layout() {
 
     const { editBook, deleteBook, books } = useContext(Books);

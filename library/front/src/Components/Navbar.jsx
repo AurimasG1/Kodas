@@ -8,7 +8,7 @@ export default function Navbar() {
     const { logout } = useLogin();
 
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav className="navbar navbar-expand bg-body-tertiary">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#home">My Library</a>
                 <div className="collapse navbar-collapse" id="navbarText">
@@ -34,7 +34,7 @@ export default function Navbar() {
                             user && <span className="sep"> | </span>
                         }
                         {
-                            user && <i className="logout" onClick={logout}>Logout</i>
+                            user && <i style={{ cursor: 'pointer' }} className="logout" onClick={logout}>Logout</i>
                         }
                         {
                             !user && <a className="nav-link" href="#register">Register</a>

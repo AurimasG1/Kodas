@@ -25,8 +25,8 @@ export default function Create() {
     }
 
     const create = _ => {
-        const errors = new Map();
         const booksIds = booksDropdown.map(author => author.id);
+        const errors = new Map();
         v.validate(inputs.name, 'name', errors, [v.required, v.string, [v.min, 3], [v.max, 100]]);
         v.validate(inputs.good, 'good', errors, [v.required, [v.inNumbers, [0, 1]]]);
         v.validate(inputs.book_id, 'book_id', errors, [v.required, [v.inNumbers, booksIds]]);

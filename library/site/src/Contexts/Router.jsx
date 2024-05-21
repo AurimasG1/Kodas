@@ -1,0 +1,76 @@
+import { createContext, useEffect, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
+
+import HomeIndex from '../Pages/Home/Index.jsx'
+import HeroIndex from '../Pages/Hero/Index.jsx'
+import HeroesIndex from '../Pages/Heroes/Index.jsx'
+import BookIndex from '../Pages/Book/Index.jsx'
+
+
+import Page404 from "../Pages/Page404.jsx";
+import Page503 from "../Pages/Page503.jsx";
+import Page401 from "../Pages/Page401.jsx";
+import PageUps from "../Pages/PageUps.jsx";
+
+
+export const Router = createContext();
+
+export const RouterProvider = () => {
+
+    const [route, setRoute] = useState(_ => {
+        const hash = window.location.hash || '#home';
+        return hash.split('/').shift()
+    }
+    );
+    const [params, setParams] = useState(_ => {
+        const hash = window.location.hash.split('/');
+        hash.shift();
+        return hash;
+    });
+
+    const [errorPageType, setErrorPageType] = useState(null);
+
+    useEffect(_ => {
+        const handleHashChange = _ => {
+            const hash = window.location.hash.split('/');
+            setRoute(hash.shift());
+            setParams(hash);
+        }
+        window.addEventListener('hashchange', handleHashChange);
+        return _ => window.removeEventListener('hashchange', handleHashChange);
+    }, []);
+
+    useEffect(_ => {
+        const userMark = localStorage.getItem('userMark');
+        if (!userMark) {
+            localStorage.setItem('userMark', uuidv4());
+        }
+    }, []);
+
+
+    const routes = [
+        { path: '#home', component: <HomeIndex /> },
+        { path: '#hero', component: <HeroIndex /> },
+        { path: '#heroes', component: <HeroesIndex /> },
+        { path: '#book', component: <BookIndex /> }
+
+    ];
+
+    const errorPages = [
+        { type: 503, component: <Page503 /> },
+        { type: 401, component: <Page401 /> },
+        { type: 'ups', component: <PageUps /> },
+
+    ]
+    const routeComponent = routes.find(r => r.path === route)?.component || <Page404 />;
+    const errorComponent = errorPages.find(e => e.type === errorPageType)?.component || null;
+
+    return (
+        <Router.Provider value={{ params, setErrorPageType }}>
+
+
+            {errorComponent || routeComponent}
+
+        </Router.Provider>
+    );
+}
