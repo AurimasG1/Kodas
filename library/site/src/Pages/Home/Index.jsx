@@ -11,7 +11,7 @@ export default function Index() {
 
     const [sort, setSort] = useState('');
 
-    const { data, loading, setUrl } = useGet('/');
+    const { data, loading, setUrl } = useGet('/landing');
 
     const authorsBooks = data => {
         if (!data) return [];
@@ -30,9 +30,9 @@ export default function Index() {
 
     useEffect(_ => {
         if (sort) {
-            setUrl(`/?sort=${sort}`);
+            setUrl(`/landing/?sort=${sort}`);
         } else {
-            setUrl('/')
+            setUrl('/landing')
         }
     }, [sort, setUrl])
 
